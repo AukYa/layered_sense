@@ -1,0 +1,7 @@
+<h1>My page</h1>
+
+<% if current_user.email != "guest@example.com" %>
+  <div>
+    <%= link_to "User Edit", edit_user_path(@user) %>
+  </div>
+<% end %>
