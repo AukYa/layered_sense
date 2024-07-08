@@ -1,6 +1,7 @@
 <h1>My page</h1>
+<%= @user.email %>
 
-<% if current_user.email != "guest@example.com" %>
+<% unless @user.guest_user? %>
   <div>
     <%= link_to "User Edit", edit_user_path(@user) %>
   </div>

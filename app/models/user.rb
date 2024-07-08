@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
          
+  has_many :works, dependent: :destroy
+         
   GUEST_USER_EMAIL = "guest@example.com"
   
     def self.guest
@@ -11,5 +13,9 @@ class User < ApplicationRecord
         user.password = SecureRandom.urlsafe_base64
         user.name = "guestuser"
       end
+    end
+    
+    def guest_user?
+      email == GUEST_USER_EMAIL
     end
 end

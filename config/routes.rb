@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     post "users/guest_sign_in", to: "users/sessions#guest_sign_in"
   end
   resources :users
+  resources :works
   get 'homes/top'
   get 'homes/about', to: 'homes#about', as: :about
   root to: "homes#top"
