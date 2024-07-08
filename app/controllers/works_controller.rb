@@ -24,7 +24,11 @@ class WorksController < ApplicationController
   def edit
   end
   
-  
+  def destroy
+    @work = Work.find(params[:id])
+    @work.destroy
+    redirect_to works_path
+  end
 
   private
 
