@@ -1,7 +1,6 @@
 <h1>作品一覧</h1>
 <% @works.each do |work| %>
   <div>
-    <p><%= audio_tag(polymorphic_path(work.music_file), controls: true) %></p>
     <%= link_to work_path(work.id) do %>
       <p>タイトル：<%= work.title %></p>
     <% end %>

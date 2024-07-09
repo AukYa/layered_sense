@@ -1,5 +1,17 @@
-<h1>My page</h1>
-<%= @user.email %>
+<h1>User show</h1>
+<div>
+  <h3><%= @user.name %></h3>
+  <%= image_tag @user.get_profile_image(100, 100) %>
+</div>
+
+<% @works.each do |work| %>
+  <div>
+    <%= link_to work_path(work.id) do %>
+      <p>タイトル：<%= work.title %></p>
+    <% end %>
+    <p>ユーザー名：<%= work.user.name %></p>
+  </div>
+<% end %>
 
 <% unless @user.guest_user? %>
   <div>
