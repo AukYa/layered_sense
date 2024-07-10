@@ -4,6 +4,6 @@
     <%= link_to work_path(work.id) do %>
       <p>タイトル：<%= work.title %></p>
     <% end %>
-    <p>ユーザー名：<%= work.user.name %></p>
+    <p><%= image_tag work.user.get_profile_image(100, 100) %>ユーザー名：<%= work.user.name %></p>
   </div>
 <% end %>

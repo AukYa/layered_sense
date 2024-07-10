@@ -6,8 +6,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    if @user != @user.guest_user?
-      @user = current_user
+    if @user == @user.guest_user?
+      @user = guestuser
     end
     @works = @user.works
   end

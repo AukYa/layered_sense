@@ -15,10 +15,12 @@ class WorksController < ApplicationController
 
   def index
     @works = Work.all
+    @users = User.all
   end
 
   def show
     @work = Work.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   def edit
