@@ -13,7 +13,7 @@
   </div>
 <% end %>
 
-<% unless @user.guest_user? %>
+<% unless @user.guest_user? || @user != current_user %>
   <div>
     <%= link_to "User Edit", edit_user_path(@user) %>
   </div>
