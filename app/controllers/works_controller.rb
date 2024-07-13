@@ -14,21 +14,27 @@ class WorksController < ApplicationController
   end
 
   def index
-    @works = Work.all
+    @works = Work.page(params[:page]).order(created_at: :desc)
     @users = User.all
   end
 
   def show
     @work = Work.find(params[:id])
-    @user = User.find(params[:id])
   end
 
   def edit
+    @work = Work.find(params[:id])
+  end
+  
+  def update
+    @work = Work.find(params[:id])
+    @work.update(work_params)
+    redirect_to work_path(@work)
   end
   
   def destroy
-    @work = Work.find(params[:id])
-    @work.destroy
+    work = Work.find(params[:id])
+    work.destroy
     redirect_to works_path
   end
 

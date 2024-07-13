@@ -3,9 +3,10 @@
   <p><%= audio_tag(polymorphic_path(@work.music_file), controls: true) %></p>
     <p>タイトル：<%= @work.title %></p>
     <p>説明文：<%= @work.introduction %></p>
-    <p><%= image_tag @user.get_profile_image(100, 100) %> ユーザー名：<%= @work.user.name %></p>
+    <p><%= image_tag @work.user.get_profile_image(100, 100) %> ユーザー名：<%= @work.user.name %></p>
     <p>投稿日：<%= @work.created_at.strftime('%Y/%m/%d') %></p>
     <% if @work.user == current_user %>
+      <%= link_to "編集", edit_work_path(@work) %>
       <%= link_to "削除", work_path(@work), method: :delete %>
     <% end %>
 </div>
