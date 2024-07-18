@@ -1,1 +1,11 @@
 @use '~bootstrap/scss/bootstrap';
+
+body {
+  background-image: url("../images/hoge.jpg");
+}
+
+.rounded-element {
+  border-radius: 10px;
+  border: 1px solid white;
+  padding: 10px;
+}
