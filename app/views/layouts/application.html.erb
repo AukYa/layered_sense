@@ -13,26 +13,36 @@
 
   <body>
     <header>
-      <!--ロゴのリンク-->
+      <!--ヘッダー左寄りの各リンク-->
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
           <a class="navbar-brand" href="/">
             <span>Layered Sense</span>
           </a>
+          <% if user_signed_in? %>
+          <div class="dropdown">
+            <div class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              各一覧
+            </div>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <%= link_to "作品", works_path, class: 'nav-link text-dark' %>
+              <%= link_to "ユーザー", users_path, class: 'nav-link text-dark' %>
+            </div>
+          </div>
+          <% end %>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="true" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="navbar-collapse collapse show" id="navbarNavDropdown" style>
-          <!--ヘッダーの各リンク-->
+          <!--ヘッダー右寄りの各リンク-->
             <ul class="navbar-nav ml-auto">
               <% if user_signed_in? %>
                 <!--ログイン状態-->
                 <li>
                   <% if current_user.guest_user? %>
-                    <span>ゲストユーザーは投稿出来ません。</span>
+                    <div class="text-light">ゲストユーザーは投稿出来ません。</div>
                   <% else %>
                     <%= link_to new_work_path, class: 'nav-link text-light' do  %>
-  
                       <div class="rounded-element">新規投稿</div>
                     <% end %>
                   <% end %>
@@ -45,16 +55,16 @@
               <% else %>
                 <!--ログアウト状態-->
                 <li>
-                  <%= link_to "About", about_path %>
+                  <%= link_to "About", about_path, class: 'nav-link text-light' %>
                 </li>
                 <li>
-                  <%= link_to "Sign up", new_user_registration_path %>
+                  <%= link_to "Sign up", new_user_registration_path, class: 'nav-link text-light' %>
                 </li>
                 <li>
-                  <%= link_to "Guest log in", users_guest_sign_in_path, method: :post %>
+                  <%= link_to "Guest log in", users_guest_sign_in_path, method: :post, class: 'nav-link text-light' %>
                 </li>
                 <li>
-                  <%= link_to "Log in", new_user_session_path %>
+                  <%= link_to "Log in", new_user_session_path, class: 'nav-link text-light' %>
                 </li>
               <% end %>
             </ul>
