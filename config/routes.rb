@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   end
   resources :users, only: [:index, :show, :edit, :update]
   resources :works
+  get 'search' => 'searches#search'
   get 'homes/top'
   get 'homes/about', to: 'homes#about', as: :about
   root to: "homes#top"
