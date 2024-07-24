@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :ensure_guest_user, only: [:edit]
 
   def index
-    @users = User.all
+    @users = User.page(params[:page]).order(created_at: :desc)
   end
 
   def show

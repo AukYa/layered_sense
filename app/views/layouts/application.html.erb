@@ -8,6 +8,7 @@
 
     <script src="https://kit.fontawesome.com/08f6dce76e.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -30,10 +31,13 @@
             </div>
           </div>
           <% end %>
+          <div class="d-flex justify-content-center">
+            <%= render 'searches/search' %>
+          </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="true" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="navbar-collapse collapse show" id="navbarNavDropdown" style>
+          <div class="navbar-collapse collapse" id="navbarNavDropdown">
           <!--ヘッダー右寄りの各リンク-->
             <ul class="navbar-nav ml-auto">
               <% if user_signed_in? %>
