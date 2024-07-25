@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_07_21_122245) do
+ActiveRecord::Schema.define(version: 2024_07_24_155856) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -40,6 +40,22 @@ ActiveRecord::Schema.define(version: 2024_07_21_122245) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "tag_relationships", force: :cascade do |t|
+    t.integer "work_id"
+    t.integer "tag_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["tag_id"], name: "index_tag_relationships_on_tag_id"
+    t.index ["work_id", "tag_id"], name: "index_tag_relationships_on_work_id_and_tag_id", unique: true
+    t.index ["work_id"], name: "index_tag_relationships_on_work_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "tag_name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -65,4 +81,6 @@ ActiveRecord::Schema.define(version: 2024_07_21_122245) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "tag_relationships", "tags"
+  add_foreign_key "tag_relationships", "works"
 end

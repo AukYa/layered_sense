@@ -6,7 +6,10 @@ class WorksController < ApplicationController
   def create
     @work = Work.new(work_params)
     @work.user_id = current_user.id
+    tag_list = params[:work][:tag_ids].split(',')
     if @work.save
+      @work.save_tags(tag_list)
+      flash[:success] = '投稿しました'
       redirect_to user_path(current_user.id)
     else
       render :new
@@ -29,6 +32,7 @@ class WorksController < ApplicationController
   def update
     @work = Work.find(params[:id])
     @work.update(work_params)
+    flash[:success] = '投稿を編集しました'
     redirect_to work_path(@work)
   end
   
@@ -41,6 +45,6 @@ class WorksController < ApplicationController
   private
 
   def work_params
-    params.require(:work).permit(:name, :introduction, :audio, :music_file, :title)
+    params.require(:work).permit(:name, :introduction, :audio, :music_file, :title, :tag_name, :tag_ids)
   end
 end
