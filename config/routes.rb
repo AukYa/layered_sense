@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   end
   resources :users, only: [:index, :show, :edit, :update]
   resources :works
+  resources :tags,　only: [:show]
   get 'search' => 'searches#search'
   get 'homes/top'
   get 'homes/about', to: 'homes#about', as: :about

@@ -23,7 +23,7 @@ class Work < ApplicationRecord
 
     def save_tags(savework_tags)
       savework_tags.each do |new_name|
-        work_tag = Tag.find_or_create_by(name: new_name)
+        work_tag = Tag.find_or_create_by(tag_name: new_name)
         self.tags << work_tag
       end
     end

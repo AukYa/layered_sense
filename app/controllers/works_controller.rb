@@ -6,7 +6,7 @@ class WorksController < ApplicationController
   def create
     @work = Work.new(work_params)
     @work.user_id = current_user.id
-    tag_list = params[:work][:tag_ids].split(',')
+    tag_list = params[:work][:tag_name].split(',')
     if @work.save
       @work.save_tags(tag_list)
       flash[:success] = '投稿しました'
@@ -45,6 +45,6 @@ class WorksController < ApplicationController
   private
 
   def work_params
-    params.require(:work).permit(:name, :introduction, :audio, :music_file, :title, :tag_name, :tag_ids)
+    params.require(:work).permit(:name, :introduction, :audio, :music_file, :title)
   end
 end
