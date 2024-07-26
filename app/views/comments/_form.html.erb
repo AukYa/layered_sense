@@ -1,0 +1,6 @@
+<h4>コメント</h4>
+<%= form_with model:[@work, @comment], local: false do |f| %>
+  <%= f.text_area :content, placeholder: "コメントを入力" %>
+  <%= f.file_field :each_file %>
+  <%= f.submit "送信" %>
+<% end %>

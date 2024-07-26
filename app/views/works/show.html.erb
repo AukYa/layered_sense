@@ -14,4 +14,6 @@
       <%= link_to "編集", edit_work_path(@work) %>
       <%= link_to "削除", work_path(@work), method: :delete %>
     <% end %>
+    <%= render 'comments/form' %>
+    <%= render 'comments/index' %>
 </div>

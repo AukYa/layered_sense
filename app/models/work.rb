@@ -4,6 +4,7 @@ class Work < ApplicationRecord
   belongs_to :user
   has_many :tag_relationships, dependent: :destroy
   has_many :tags, through: :tag_relationships
+  has_many :comments, dependent: :destroy
 
   validates :music_file, presence: true
 

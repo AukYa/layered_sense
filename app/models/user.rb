@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_one_attached :profile_image
          
   has_many :works, dependent: :destroy
+  has_many :comments, dependent: :destroy
          
   GUEST_USER_EMAIL = "guest@example.com"
   
