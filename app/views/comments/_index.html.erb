@@ -3,7 +3,7 @@
   <p><%= image_tag comment.user.get_profile_image(50, 50), class: "mt-3 rounded-circle"; %><%= comment.user.name %></p>
  <% end %>
  <%= comment.content %>
- <% if comment.user == current_user %>
+ <% if comment.user == current_user || current_user.admin_user? %>
   <%= link_to "削除", work_comment_path(comment.work, comment), method: :delete, "data-confirm" => "削除しますか？", class: 'btn btn-sm btn-danger destroy_book_id' %>
  <% end %>
 <% end %>

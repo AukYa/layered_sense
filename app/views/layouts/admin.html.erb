@@ -8,11 +8,22 @@
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 <body>
-  <% if admin_signed_in? %>
-    <div class="text-right">
-      <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
-    </div>
-  <% end %>
+  <div class="container-fluid">
+    <% if admin_signed_in? %>
+      <div class="text-right">
+        <div class="dropdown">
+          <div type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            各一覧
+          </div>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <%= link_to "作品", admin_works_path, class: 'nav-link text-dark' %>
+            <%= link_to "ユーザー", admin_users_path, class: 'nav-link text-dark' %>
+          </div>
+        </div>
+        <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
+      </div>
+    <% end %>
+  </div>
   <%= yield %>
 </body>
 </html>
