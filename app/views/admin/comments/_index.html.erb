@@ -1,0 +1,8 @@
+<% @comments.each do |comment| %> <br />
+ <%= link_to user_path(comment.user.id) do %>
+  <%= image_tag comment.user.get_profile_image(50, 50), class: "mt-3 rounded-circle"; %><%= comment.user.name %>
+ <% end %>
+ <%= comment.content %>
+  <%= link_to "編集", edit_admin_work_comment_path(comment.work, comment) %>
+  <%= link_to "削除", admin_work_comment_path(comment.work, comment), method: :delete, "data-confirm" => "削除しますか？", class: 'btn btn-sm btn-danger destroy_book_id' %>
+<% end %>

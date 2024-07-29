@@ -1,0 +1,9 @@
+<h1>タグの一覧</h1>
+<% @tags.each do |tag| %>
+  <ul>
+    <li>
+      <%= tag.tag_name %>(<%= tag.works.count %>)
+      <%= link_to "削除", admin_tag_path(tag), method: :delete, data: {confirm: "本当に削除しますか？"}  %>
+    </li>
+  </ul>
+<% end %>

@@ -18,6 +18,7 @@
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <%= link_to "作品", admin_works_path, class: 'nav-link text-dark' %>
             <%= link_to "ユーザー", admin_users_path, class: 'nav-link text-dark' %>
+            <%= link_to "タグ", admin_tags_path, class: 'nav-link text-dark' %>
           </div>
         </div>
         <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>

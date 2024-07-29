@@ -34,6 +34,10 @@ class Admin::WorksController < ApplicationController
   private
 
   def admin_work_params
-    params.require(:work).permit(:name, :introduction, :audio, :music_file, :title)
+    params.require(:work).permit(:name, :introduction, :music_file, :title)
+  end
+  
+  def admin_comment_params
+    params.require(:comment).permit(:content)
   end
 end

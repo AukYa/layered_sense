@@ -1,18 +1,16 @@
 <h1>作品詳細</h1>
 <div>
-  <p><%= audio_tag(polymorphic_path(@work.music_file), controls: true) %></p>
-    <p>タイトル：<%= @work.title %></p>
-    <p>説明文：<%= @work.introduction %></p>
-    <%= link_to user_path(@work.user.id) do  %>
-      <p><%= image_tag @work.user.get_profile_image(100, 100) %> ユーザー名：<%= @work.user.name %></p>
+  <%= audio_tag(polymorphic_path(@work.music_file), controls: true) %> <br />
+    タイトル：<%= @work.title %> <br />
+    説明文：<%= @work.introduction %> <br />
+    <%= link_to admin_user_path(@work.user.id) do  %>
+      <%= image_tag @work.user.get_profile_image(100, 100) %> ユーザー名：<%= @work.user.name %> <br />
     <% end %>
     <% @work.tags.each do |tag| %>
-      <%= link_to tag.tag_name, tag_path(tag) %>
+      <%= link_to tag.tag_name, tag_path(tag) %> <br />
     <% end %>
-    <p>投稿日：<%= @work.created_at.strftime('%Y/%m/%d') %></p>
-    <% if @work.user == current_user %>
-      <%= link_to "編集", edit_work_path(@work) %>
-      <%= link_to "削除", work_path(@work), method: :delete %>
-    <% end %>
-    <%= render 'comments/index' %>
+    投稿日：<%= @work.created_at.strftime('%Y/%m/%d') %> <br />
+      <%= link_to "編集", edit_admin_work_path(@work) %>
+      <%= link_to "削除", admin_work_path(@work), method: :delete, data: {confirm: "本当に削除しますか？"}  %> <br />
+    <%= render 'admin/comments/index' %>
 </div>
