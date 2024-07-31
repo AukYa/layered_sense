@@ -7,6 +7,7 @@ class Work < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   validates :music_file, presence: true
+  validates :title, length: {maximum: 64}
 
   def self.looks(search, word)
       if search == "perfect_match"

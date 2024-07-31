@@ -7,10 +7,11 @@
 
 <div class="container">
   <div class="row">
+    <h3 class="col-lg-12">投稿作品</h3>
     <% @works.each do |work| %>
-      <div class="col-lg-2">
-        <%= link_to work_path(work.id) do %>
-          <p>タイトル：<%= work.title %></p>
+      <div class="col-lg-2 text-center text-truncate">
+        <%= link_to work_path(work.id), class: "text-dark" do %>
+          <striong><%= work.title %></strong>
         <% end %>
       </div>
     <% end %>

@@ -10,7 +10,12 @@ body {
   padding: 10px;
 }
 
-.dropdown-toggle {
+.tag_view {
+  padding: 5px;
+  background-color: #d8d8d8;
+}
+
+.header_dropdown-toggle {
   color: white;
 }
 
@@ -23,6 +28,16 @@ body {
   align-items: center;
 }
 
-.margin-r-20 {
-  margin-right: 20%;
+.margin-l-25 {
+  margin-left: -25%;
 }
+
+.page_title {
+  padding: 2% 0%;
+}
+
+.sub_text {
+  color: #c5c5c5;
+  font-size: 80%;
+}
+

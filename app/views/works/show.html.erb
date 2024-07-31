@@ -1,19 +1,46 @@
-<h1>作品詳細</h1>
-<div>
-  <p><%= audio_tag(polymorphic_path(@work.music_file), controls: true) %></p>
-    <p>タイトル：<%= @work.title %></p>
-    <p>説明文：<%= @work.introduction %></p>
-    <%= link_to user_path(@work.user.id) do  %>
-      <p><%= image_tag @work.user.get_profile_image(100, 100) %> ユーザー名：<%= @work.user.name %></p>
-    <% end %>
-    <% @work.tags.each do |tag| %>
-      <%= link_to tag.tag_name, tag_path(tag) %>
-    <% end %>
-    <p>投稿日：<%= @work.created_at.strftime('%Y/%m/%d') %></p>
-    <% if @work.user == current_user %>
-      <%= link_to "編集", edit_work_path(@work) %>
-      <%= link_to "削除", work_path(@work), method: :delete %>
-    <% end %>
-    <%= render 'comments/form' %>
-    <%= render 'comments/index' %>
+<div class="d-flex justify-content-between">
+  <% if @work.user == current_user %>
+    <div class="dropdown col-2 pl-0">
+      <div class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        投稿者MENU
+      </div>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <%= link_to "作品の編集", edit_work_path(@work), class: 'nav-link text-dark' %>
+        <%= link_to "作品の削除", work_path(@work), method: :delete, class: 'nav-link text-dark' %>
+      </div>
+    </div>
+  <% end %>
+  <h1 class="page_title col-2 text-center">作品詳細</h1>
+  <h1 class="col-2"></h1>
+</div>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="w-75">
+      <div class="text-center">
+        <p><%= audio_tag(polymorphic_path(@work.music_file), controls: true) %></p>
+      </div>
+      <p>Title</p>
+      <h3><%= @work.title %></h3>
+      <hr />
+      <%= link_to user_path(@work.user.id), class: "text-dark" do  %>
+        <p><%= image_tag @work.user.get_profile_image(100, 100) %><%= @work.user.name %></p>
+      <% end %>
+      <p>Introduction</p>
+      <%= @work.introduction %> <br />
+      <p></p>
+      <% @work.tags.each do |tag| %>
+        <span class="border border-1 rounded-pill tag_view">#<%= link_to tag.tag_name, tag_path(tag), class: "text-dark" %></span>
+      <% end %>
+      <p></p>
+      <div class="sub_text">
+        <p>投稿日：<%= @work.created_at.strftime('%Y/%m/%d') %></p>
+      </div>
+      <hr />
+      <p></p>
+      <%= render 'comments/form' %>
+      <p></p>
+      <%= render 'comments/index' %>
+    </div>
+  </div>
 </div>
