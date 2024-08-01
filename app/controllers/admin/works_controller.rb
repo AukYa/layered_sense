@@ -20,15 +20,20 @@ class Admin::WorksController < ApplicationController
   
   def update
     @work = Work.find(params[:id])
-    @work.update(admin_work_params)
-    flash[:success] = '投稿を編集しました'
-    redirect_to admin_work_path(@work)
+    if @work.update(admin_work_params)
+      flash[:notice] = '投稿を編集しました'
+      redirect_to admin_work_path(@work)
+    else
+      flash.now[:alert] = "編集に失敗しました"
+      render :edit
+    end
   end
   
   def destroy
     work = Work.find(params[:id])
     work.destroy
     redirect_to admin_works_path
+    flash[:notice] = "投稿を削除しました"
   end
 
   private

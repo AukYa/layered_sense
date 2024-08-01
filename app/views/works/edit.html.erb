@@ -2,7 +2,7 @@
 <%= form_with model: @work do |f| %>
   <h4>楽曲</h4>
   <p><%= audio_tag(polymorphic_path(@work.music_file), controls: true) %></p>
-  <p><%= @work.music_file.blob.filename.to_s %></p>
+  <p>現在選択されているファイル： 「<%= @work.music_file.blob.filename.to_s %>」</p>
   <%= f.file_field :music_file, accept: "audio/*" %>
   <h4>タイトル</h4>
   <%= f.text_field :title %>

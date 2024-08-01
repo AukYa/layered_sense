@@ -40,4 +40,15 @@ body {
   color: #c5c5c5;
   font-size: 80%;
 }
-
+ 
+.flash-message.notice {
+  background-color: #bcdfff;
+  color: #0067C0;
+  border: solid 1px #0067C0;
+}
+ 
+.flash-message.alert {
+  background-color: #ffd4d1;
+  color: #930403;
+  border: solid 1px #930403;
+}

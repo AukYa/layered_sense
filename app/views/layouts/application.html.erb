@@ -76,6 +76,11 @@
         </div>
       </nav>
     </header>
+    <main>
+      <% flash.each do |message_type, message| %>
+        <div class="flash-message text-center w-25 <%= message_type %>"><%= message %></div>
+      <% end %>
+    </main>
     <%= yield %>
   </body>
 </html>

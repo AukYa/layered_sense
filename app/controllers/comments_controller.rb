@@ -12,6 +12,7 @@ class CommentsController < ApplicationController
     @work = Work.find(params[:work_id])
     @work_comments = @work.comments
     Comment.find_by(id: params[:id], work_id: params[:work_id]).destroy
+    flash[:notice] = "コメントを削除しました"
     redirect_to request.referer
   end
 

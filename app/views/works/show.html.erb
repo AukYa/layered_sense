@@ -6,7 +6,7 @@
       </div>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <%= link_to "作品の編集", edit_work_path(@work), class: 'nav-link text-dark' %>
-        <%= link_to "作品の削除", work_path(@work), method: :delete, class: 'nav-link text-dark' %>
+        <%= link_to "作品の削除", work_path(@work), method: :delete, "data-confirm" => "削除しますか？", class: 'nav-link text-dark' %>
       </div>
     </div>
   <% end %>
@@ -29,6 +29,7 @@
       <p>Introduction</p>
       <%= @work.introduction %> <br />
       <p></p>
+      <hr />
       <% @work.tags.each do |tag| %>
         <span class="border border-1 rounded-pill tag_view">#<%= link_to tag.tag_name, tag_path(tag), class: "text-dark" %></span>
       <% end %>

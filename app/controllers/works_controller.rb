@@ -9,9 +9,10 @@ class WorksController < ApplicationController
     tag_list = params[:work][:tag_name].split(',')
     if @work.save
       @work.save_tags(tag_list)
-      flash[:success] = '投稿しました'
+      flash[:notice] = '投稿しました'
       redirect_to user_path(current_user.id)
     else
+      flash.now[:alert] = "投稿に失敗しました"
       render :new
     end
   end
@@ -30,17 +31,22 @@ class WorksController < ApplicationController
   def edit
     @work = Work.find(params[:id])
   end
-  
+
   def update
     @work = Work.find(params[:id])
-    @work.update(work_params)
-    flash[:success] = '投稿を編集しました'
-    redirect_to work_path(@work)
+    if @work.update(work_params)
+      flash[:notice] = '投稿を編集しました'
+      redirect_to work_path(@work)
+    else
+      flash.now[:alert] = "編集に失敗しました"
+      render :edit
+    end
   end
-  
+
   def destroy
     work = Work.find(params[:id])
     work.destroy
+    flash[:notice] = "投稿を削除しました"
     redirect_to works_path
   end
 

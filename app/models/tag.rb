@@ -2,7 +2,7 @@ class Tag < ApplicationRecord
   has_many :tag_relationships, dependent: :destroy
   has_many :works, through: :tag_relationships
   
-  validates :tag_name, uniqueness: true
+  validates :tag_name, uniqueness: true, presence: true
   
   def self.looks(search, word)
       if search == "perfect_match"

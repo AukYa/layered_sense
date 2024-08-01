@@ -27,7 +27,7 @@
       <% end %>
     <% else %>
       <% @tags.each do |tag| %>
-        <div class="border border-1 rounded-pill tag_view">#<%= link_to tag.tag_name, tag_path(tag), class: "text-dark" %></div>
+        <div class="border border-1 rounded-pill tag_view">#<%= link_to tag.tag_name, tag_path(tag), class: "text-dark" %>(<%= tag.works.count %>)</div>
       <% end %>
     <% end %>
   </div>

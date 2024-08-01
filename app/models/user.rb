@@ -8,6 +8,9 @@ class User < ApplicationRecord
 
   has_many :works, dependent: :destroy
   has_many :comments, dependent: :destroy
+  
+  validates :name, presence: true
+  validates :introduction, length: {maximum: 1000}
 
   GUEST_USER_EMAIL = "guest@example.com"
 
