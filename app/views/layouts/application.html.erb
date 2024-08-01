@@ -23,11 +23,11 @@
           <% if user_signed_in? %>
           <div class="dropdown margin-l-25">
             <div class="dropdown-toggle header_dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              各一覧
+              Lists
             </div>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <%= link_to "作品", works_path, class: 'nav-link text-dark' %>
-              <%= link_to "ユーザー", users_path, class: 'nav-link text-dark' %>
+              <%= link_to "Works", works_path, class: 'nav-link text-dark' %>
+              <%= link_to "Users", users_path, class: 'nav-link text-dark' %>
             </div>
           </div>
           <% end %>
@@ -44,10 +44,10 @@
                 <!--ログイン状態-->
                 <li>
                   <% if current_user.guest_user? %>
-                    <div class="text-light">ゲストユーザーは投稿出来ません。</div>
+                    <div class="text-light">guestuser can't post...</div>
                   <% else %>
                     <%= link_to new_work_path, class: 'nav-link text-light' do  %>
-                      <div class="rounded-element">新規投稿</div>
+                      <div class="rounded-element">New Post</div>
                     <% end %>
                   <% end %>
                 </li>

@@ -4,7 +4,9 @@
   <h4><%= @user.introduction %></h4>
   <% unless @user.guest_user? || @user != current_user %>
   <div>
-    <%= link_to "User Edit", edit_user_path(@user) %>
+    <%= link_to edit_user_path(@user), class: "text-dark" do %>
+     <i class="fa-solid fa-gear border border-5 text-center rounded-pill w-100"></i>
+    <% end %>
   </div>
   <% end %>
 </div>

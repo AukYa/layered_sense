@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :works, dependent: :destroy
   has_many :comments, dependent: :destroy
   
-  validates :name, presence: true
+  validates :name, presence: true, length: {maximum: 24}
   validates :introduction, length: {maximum: 1000}
 
   GUEST_USER_EMAIL = "guest@example.com"

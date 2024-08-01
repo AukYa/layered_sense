@@ -1,12 +1,44 @@
-<h1>作品編集</h1>
-<%= form_with model: @work do |f| %>
-  <h4>楽曲</h4>
-  <p><%= audio_tag(polymorphic_path(@work.music_file), controls: true) %></p>
-  <p>現在選択されているファイル： 「<%= @work.music_file.blob.filename.to_s %>」</p>
-  <%= f.file_field :music_file, accept: "audio/*" %>
-  <h4>タイトル</h4>
-  <%= f.text_field :title %>
-  <h4>説明文</h4>
-  <%= f.text_area :introduction %>
-  <%= f.submit '変更を保存' %>
-  <% end %>
+<div class="d-flex justify-content-center">
+  <h1 class="page_title">Work Edit</h1>
+</div>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="w-75">
+      <%= form_with model: @work do |f| %>
+        <div class="row">
+          <div class="col-12 mb-3">
+            <p class="text-center"><%= audio_tag(polymorphic_path(@work.music_file), controls: true) %></p>
+          </div>
+          <div class="col-lg-3">
+            <%= f.label :music_file %>
+          </div>
+          <div class="col-lg-6 offset-3 pl-0 pr-0">
+            <%= f.file_field :music_file, accept: "audio/*" %>
+          </div>
+        </div>
+        <div class="col-6 offset-6 mt-3 pl-0 pr-0">現在選択されているファイル： 「<%= @work.music_file.blob.filename.to_s %>」</div>
+        <div class="row mt-5">
+          <div class="col-lg-3">
+            <%= f.label :title %>
+          </div>
+          <div class="col-lg-6 offset-3 pl-0 pr-0">
+            <%= f.text_field :title, placeholder: "タイトル", class: "w-100" %>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col-lg-3">
+            <%= f.label :introduction %>
+          </div>
+          <div class="col-lg-6 offset-3 pl-0 pr-0">
+            <%= f.text_area :introduction, placeholder: "説明文", class: "w-100" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="offset-lg-6 col-lg-6 text-right mt-4 pr-0">
+            <%= f.submit '変更を保存' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

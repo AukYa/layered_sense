@@ -3,6 +3,8 @@ class SearchesController < ApplicationController
 
   def search
     @range = params[:range]
+    @works_page = Work.page(params[:page]).order(created_at: :desc)
+    @users_page = User.page(params[:page]).order(created_at: :desc)
 
     if @range == 'User'
       @users = User.looks(params[:search], params[:word])

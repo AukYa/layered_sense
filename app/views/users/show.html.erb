@@ -1,18 +1,30 @@
 <div class="container">
   <div class="row">
-    <div class='col-lg-3'>
+    <div class='col-lg-3 vh-100'>
       <h2>User info</h2>
       <%= render 'info', user: @user %>
     </div>
-    <div class="d-flex col-lg-8 offset-lg-1">
-      <h3>投稿作品</h3>
+    <div class="col-lg-8 offset-lg-1">
+      <div class="row">
+        <div class="col-12">
+          <h3>Works</h3>
+        </div>
+      </div>
+      <div class="row">
       <% @works.each do |work| %>
-        <div class="text-center text-truncate mb-5">
+        <div class="text-center mb-5 col-3">
           <%= link_to work_path(work.id), class: "text-dark" do %>
-            <striong><%= work.title %></strong>
+            <div class="card">
+              <div class="card-body">
+                <i class="fa-solid fa-music fa-3x m-2"></i>
+                <h5 class="card-title text-truncate"><%= work.title %></h5>
+                <p class="card-text text-truncate"><%= work.introduction %></p>
+              </div>
+            </div>
           <% end %>
         </div>
       <% end %>
+      </div>
     </div>
   </div>
 </div>
