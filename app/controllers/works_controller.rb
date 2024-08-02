@@ -1,4 +1,6 @@
 class WorksController < ApplicationController
+  before_action :restrict_guest_user_from_new, only: [:new]
+  
   def new
     @work = Work.new
   end
@@ -30,9 +32,11 @@ class WorksController < ApplicationController
 
   def edit
     @work = Work.find(params[:id])
+    is_matching_login_user
   end
 
   def update
+    is_matching_login_user
     @work = Work.find(params[:id])
     if @work.update(work_params)
       flash[:notice] = '投稿を編集しました'
@@ -51,6 +55,14 @@ class WorksController < ApplicationController
   end
 
   private
+  
+  def is_matching_login_user
+    user = User.find(params[:id])
+    unless user.id == current_user.id
+      flash[:alert] = "利用できません"
+      redirect_to homes_top_path
+    end
+  end
 
   def work_params
     params.require(:work).permit(:name, :introduction, :music_file, :title)

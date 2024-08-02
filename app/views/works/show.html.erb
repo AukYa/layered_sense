@@ -1,5 +1,5 @@
-<div class="d-flex justify-content-between">
-  <% if @work.user == current_user %>
+<% if @work.user == current_user %>
+  <div class="d-flex justify-content-between">
     <div class="dropdown col-2 pl-0">
       <div class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         投稿者MENU
@@ -9,10 +9,14 @@
         <%= link_to "作品の削除", work_path(@work), method: :delete, "data-confirm" => "削除しますか？", class: 'nav-link text-dark' %>
       </div>
     </div>
-  <% end %>
-  <h1 class="page_title col-2 text-center">Work Detail</h1>
-  <h1 class="col-2"></h1>
-</div>
+    <h1 class="page_title col-2 text-center">Work Detail</h1>
+    <h1 class="col-2"></h1>
+  </div>
+<% else %>
+  <div class="d-flex justify-content-center">
+    <h1 class="page_title">Work Detail</h1>
+  </div>
+<% end %>
 
 <div class="container">
   <div class="row justify-content-center">

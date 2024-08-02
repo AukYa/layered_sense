@@ -9,6 +9,8 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @works = @user.works
+    @works_page = Work.page(params[:page]).order(created_at: :desc)
   end
 
   def edit

@@ -1,16 +1,43 @@
-<h1>作品詳細</h1>
-<div>
-  <%= audio_tag(polymorphic_path(@work.music_file), controls: true) %> <br />
-    タイトル：<%= @work.title %> <br />
-    説明文：<%= @work.introduction %> <br />
-    <%= link_to admin_user_path(@work.user.id) do  %>
-      <%= image_tag @work.user.get_profile_image(100, 100) %> ユーザー名：<%= @work.user.name %> <br />
-    <% end %>
-    <% @work.tags.each do |tag| %>
-      <%= tag.tag_name %>
-    <% end %> <br />
-    投稿日：<%= @work.created_at.strftime('%Y/%m/%d') %> <br />
-      <%= link_to "編集", edit_admin_work_path(@work) %>
-      <%= link_to "削除", admin_work_path(@work), method: :delete, data: {confirm: "本当に削除しますか？"}  %> <br />
-    <%= render 'admin/comments/index' %>
+<div class="d-flex justify-content-between">
+  <div class="dropdown col-2 pl-0">
+    <div class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      MENU
+    </div>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <%= link_to "作品の編集", edit_admin_work_path(@work), class: 'nav-link text-dark' %>
+      <%= link_to "作品の削除", admin_work_path(@work), method: :delete, "data-confirm" => "削除しますか？", class: 'nav-link text-dark' %>
+    </div>
+  </div>
+  <h1 class="page_title col-2 text-center">Work Detail</h1>
+  <h1 class="col-2"></h1>
+</div>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="w-75">
+      <div class="text-center">
+        <p><%= audio_tag(polymorphic_path(@work.music_file), controls: true) %></p>
+      </div>
+      <p>Title</p>
+      <h3><%= @work.title %></h3>
+      <hr />
+      <%= link_to admin_user_path(@work.user.id), class: "text-dark" do  %>
+        <p><%= image_tag @work.user.get_profile_image(100, 100) %><%= @work.user.name %></p>
+      <% end %>
+      <p>Introduction</p>
+      <%= @work.introduction %> <br />
+      <p></p>
+      <hr />
+      <% @work.tags.each do |tag| %>
+        <span class="border border-1 rounded-pill tag_view">#<%= link_to tag.tag_name, tag_path(tag), class: "text-dark" %></span>
+      <% end %>
+      <p></p>
+      <div class="sub_text">
+        <p>投稿日：<%= @work.created_at.strftime('%Y/%m/%d') %></p>
+      </div>
+      <hr />
+      <p></p>
+      <%= render 'admin/comments/index' %>
+    </div>
+  </div>
 </div>

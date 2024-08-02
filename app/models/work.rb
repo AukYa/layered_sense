@@ -10,6 +10,10 @@ class Work < ApplicationRecord
   validates :title, length: {maximum: 64}, presence: true
   validates :introduction, length: {maximum: 1000}
 
+  def guest_user?
+    email == GUEST_USER_EMAIL
+  end
+
   def self.looks(search, word)
       if search == "perfect_match"
         @work = Work.where("title LIKE?", "#{word}")

@@ -15,6 +15,13 @@ class ApplicationController < ActionController::Base
   def admin_controller?
     self.class.module_parent_name == 'Admin'
   end
+  
+  def restrict_guest_user_from_new
+    if current_user.guest_user?
+      flash[:alert] = "利用できません"
+      redirect_to homes_top_path
+    end
+  end
 
   protected
 

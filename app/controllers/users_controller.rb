@@ -11,13 +11,16 @@ class UsersController < ApplicationController
       @user = guestuserexit
     end
     @works = @user.works
+    @works_page = Work.page(params[:page]).order(created_at: :desc)
   end
 
   def edit
+    is_matching_login_user
     @user = User.find(params[:id])
   end
 
   def update
+    is_matching_login_user
     @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:notice] = "プロフィールを編集しました"
@@ -33,7 +36,16 @@ class UsersController < ApplicationController
   def ensure_guest_user
     @user = current_user
     if @user.guest_user?
-      redirect_to user_path(current_user), notice: "guestuserはプロフィール編集画面へ遷移できません。"
+      flash[:alert] = "利用できません"
+      redirect_to user_path(current_user)
+    end
+  end
+  
+  def is_matching_login_user
+    user = User.find(params[:id])
+    unless user.id == current_user.id
+      flash[:alert] = "利用できません"
+      redirect_to homes_top_path
     end
   end
 

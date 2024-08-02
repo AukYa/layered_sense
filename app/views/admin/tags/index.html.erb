@@ -1,9 +1,14 @@
-<h1>タグの一覧</h1>
-<% @tags.each do |tag| %>
-  <ul>
-    <li>
-      <%= tag.tag_name %>(<%= tag.works.count %>)
-      <%= link_to "削除", admin_tag_path(tag), method: :delete, data: {confirm: "本当に削除しますか？"}  %>
-    </li>
-  </ul>
-<% end %>
+<div class="d-flex justify-content-center">
+  <h1 class="page_title">All Tags</h1>
+</div>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <% @tags.each do |tag| %>
+        ●
+        <%= tag.tag_name %>(<%= tag.works.count %>)
+        <%= link_to "Del", admin_tag_path(tag), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-danger btn-sm m-3"  %>
+      <% end %>
+    </div>
+  </div>
+</div>

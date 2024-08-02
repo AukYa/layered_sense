@@ -9,7 +9,7 @@
           <div class="col-lg-3">
             <%= f.label :music_file %>
           </div>
-          <div class="col-lg-6 offset-3 pl-0 pr-0">
+          <div class="col-lg-8 offset-1 pl-0 pr-0">
             <%= f.file_field :music_file, accept: "audio/*" %>
           </div>
         </div>
@@ -17,7 +17,7 @@
           <div class="col-lg-3">
             <%= f.label :title %>
           </div>
-          <div class="col-lg-6 offset-3 pl-0 pr-0">
+          <div class="col-lg-8 offset-1 pl-0 pr-0">
             <%= f.text_field :title, placeholder: "タイトル", class: "w-100" %>
           </div>
         </div>
@@ -25,7 +25,7 @@
           <div class="col-lg-3">
             <%= f.label :introduction %>
           </div>
-          <div class="col-lg-6 offset-3 pl-0 pr-0">
+          <div class="col-lg-8 offset-1 pl-0 pr-0">
             <%= f.text_area :introduction, placeholder: "説明文", class: "w-100" %>
           </div>
         </div>
@@ -33,7 +33,7 @@
           <div class="col-lg-3">
             <%= f.label :tag_name %>
           </div>
-          <div class="col-lg-6 offset-3 pl-0 pr-0">
+          <div class="col-lg-8 offset-1 pl-0 pr-0">
             <%= f.text_field :tag_name, id:'tag_ids', :size=>"50", placeholder: "タグをつける。複数つけるには' , 'で区切ってください。", class: "w-100" %>
           </div>
         </div>
