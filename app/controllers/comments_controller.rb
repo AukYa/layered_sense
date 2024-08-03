@@ -1,10 +1,12 @@
 class CommentsController < ApplicationController
   def create
+    #byebug
     @work = Work.find(params[:work_id])
     @comment = Comment.new(comment_params)
     @comment.work_id = @work.id
     @comment.user_id = current_user.id
     @comment.save
+    flash[:alert] = @comment.errors.full_messages.reject(&:blank?).join("")
     redirect_to request.referer
   end
 

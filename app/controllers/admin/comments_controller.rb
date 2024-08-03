@@ -3,7 +3,6 @@ class Admin::CommentsController < ApplicationController
 
   layout 'admin'
 
-
   def destroy
     @work = Work.find(params[:work_id])
     @work_comments = @work.comments

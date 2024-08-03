@@ -17,7 +17,7 @@
             <%= f.file_field :music_file, accept: "audio/*" %>
           </div>
         </div>
-        <div class="col-6 offset-6 mt-3 pl-0 pr-0">現在選択されているファイル： 「<%= @work.music_file.blob.filename.to_s %>」</div>
+        <div class="col-lg-8 offset-4 mt-3 pl-0 pr-0">現在選択されているファイル： 「<%= @work.music_file.blob.filename.to_s %>」</div>
         <div class="row mt-5">
           <div class="col-lg-3">
             <%= f.label :title %>
@@ -34,9 +34,17 @@
             <%= f.text_area :introduction, placeholder: "説明文", class: "w-100" %>
           </div>
         </div>
+        <div class="row mt-5">
+          <div class="col-lg-3">
+            <%= f.label :tag_name %>
+          </div>
+          <div class="col-lg-8 offset-1 pl-0 pr-0">
+            <%= f.text_field :tag_name, id:'tag_ids', :size=>"50", placeholder: "タグをつける。複数つけるには' , 'で区切ってください。", class: "w-100" %>
+          </div>
+        </div>
         <div class="row">
           <div class="offset-lg-6 col-lg-6 text-right mt-4 pr-0">
-            <%= f.submit '変更を保存' %>
+            <%= f.submit 'Save Changes' %>
           </div>
         </div>
       <% end %>

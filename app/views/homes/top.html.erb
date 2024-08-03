@@ -18,7 +18,7 @@
           </div>
         <% end %>
         <%= link_to user_path(work.user.id), class: "text-dark" do  %>
-          <p><%= image_tag work.user.get_profile_image(50, 50), class: "mt-3 rounded-circle"; %><%= work.user.name %></p>
+          <div class="mt-3"><%= image_tag work.user.get_profile_image(50, 50), class: "rounded-circle border"; %> <%= work.user.name %></div>
         <% end %>
       </div>
     <% end %>

@@ -22,14 +22,14 @@
       <h3><%= @work.title %></h3>
       <hr />
       <%= link_to admin_user_path(@work.user.id), class: "text-dark" do  %>
-        <p><%= image_tag @work.user.get_profile_image(100, 100) %><%= @work.user.name %></p>
+        <p><%= image_tag @work.user.get_profile_image(100, 100), class: "rounded-circle border" %> <%= @work.user.name %></p>
       <% end %>
       <p>Introduction</p>
       <%= @work.introduction %> <br />
       <p></p>
       <hr />
       <% @work.tags.each do |tag| %>
-        <span class="border border-1 rounded-pill tag_view">#<%= link_to tag.tag_name, tag_path(tag), class: "text-dark" %></span>
+        <span class="border border-1 rounded-pill tag_view">#<%= tag.tag_name %></span>
       <% end %>
       <p></p>
       <div class="sub_text">

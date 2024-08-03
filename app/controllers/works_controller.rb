@@ -31,10 +31,12 @@ class WorksController < ApplicationController
   end
 
   def edit
+    is_matching_login_user
     @work = Work.find(params[:id])
   end
 
   def update
+    is_matching_login_user
     @work = Work.find(params[:id])
     if @work.update(work_params)
       flash[:notice] = '投稿を編集しました'
@@ -55,8 +57,8 @@ class WorksController < ApplicationController
   private
   
   def is_matching_login_user
-    user = User.find(params[:id])
-    unless user.id == current_user.id
+    @user = User.find(id: params[:work][:user_id])
+    unless @user.id == current_user.id
       flash[:alert] = "利用できません"
       redirect_to homes_top_path
     end

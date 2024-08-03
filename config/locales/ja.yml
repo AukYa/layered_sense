@@ -1,0 +1,9 @@
+ja:
+  activerecord:
+    attributes:
+      comment:
+        content: 内容
+  activemodel:   # Formオブジェクトを用いた場合
+     attributes:
+       order_object:
+         post_code: 郵便番号

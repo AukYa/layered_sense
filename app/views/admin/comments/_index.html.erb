@@ -1,13 +1,13 @@
 <div class="container">
  <div class="row">
    <% @comments.each do |comment| %> <br />
-    <div class="col-2">
+    <div class="col-2 mb-3">
     <% if comment.user.guest_user? %>
-     <%= image_tag comment.user.get_profile_image(50, 50), class: "rounded-circle" %>
+     <%= image_tag comment.user.get_profile_image(50, 50), class: "rounded-circle border" %>
      <%= comment.user.name %>
     <% else %>
      <%= link_to admin_user_path(comment.user.id), class: "text-dark" do %>
-      <%= image_tag comment.user.get_profile_image(50, 50), class: "rounded-circle" %>
+      <%= image_tag comment.user.get_profile_image(50, 50), class: "rounded-circle border" %>
       <div>
        <%= comment.user.name %>
       </div>

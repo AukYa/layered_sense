@@ -37,7 +37,7 @@ class UsersController < ApplicationController
     @user = current_user
     if @user.guest_user?
       flash[:alert] = "利用できません"
-      redirect_to user_path(current_user)
+      redirect_to homes_top_path
     end
   end
   

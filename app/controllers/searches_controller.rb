@@ -6,7 +6,7 @@ class SearchesController < ApplicationController
     @works_page = Work.page(params[:page]).order(created_at: :desc)
     @users_page = User.page(params[:page]).order(created_at: :desc)
 
-    if params[:word].present? || params[:word].empty?
+    if params[:word].empty?
       flash[:alert] = "入力内容がありません"
       redirect_to request.referer
       return

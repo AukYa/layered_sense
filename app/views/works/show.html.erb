@@ -29,7 +29,7 @@
       <h3><%= @work.title %></h3>
       <hr />
       <%= link_to user_path(@work.user.id), class: "text-dark" do  %>
-        <p><%= image_tag @work.user.get_profile_image(100, 100) %><%= @work.user.name %></p>
+        <p><%= image_tag @work.user.get_profile_image(100, 100), class: "rounded-circle border" %> <%= @work.user.name %></p>
       <% end %>
       <p>Introduction</p>
       <%= @work.introduction %> <br />

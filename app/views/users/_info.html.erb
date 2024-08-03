@@ -1,5 +1,5 @@
 <div class="d-block">
-  <%= image_tag @user.get_profile_image(100, 100), class: "mt-3 rounded-circle"; %>
+  <%= image_tag @user.get_profile_image(100, 100), class: "mt-3 mb-3 rounded-circle border"; %>
   <h4><%= @user.name %></h4>
   <h4><%= @user.introduction %></h4>
   <% unless @user.guest_user? || @user != current_user %>
