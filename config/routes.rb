@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users, only: [:index, :show, :edit, :update, :destroy]
     resources :works, only: [:index, :show, :edit, :update, :destroy] do
-      resources :comments, only: [:edit, :update, :destroy]
+      resources :comments, only: [:destroy]
     end
     resources :tags, only: [:index, :destroy]
   end

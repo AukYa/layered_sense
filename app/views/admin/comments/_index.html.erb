@@ -23,7 +23,6 @@
          <i class="fa-solid fa-ellipsis"></i>
        </div>
        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-         <%= link_to "編集", edit_admin_work_comment_path(comment.work, comment), class: "text-dark" %>
          <%= link_to "削除", admin_work_comment_path(comment.work, comment), method: :delete, "data-confirm" => "削除しますか？", class: 'text-dark' %>
        </div>
      </div>

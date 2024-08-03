@@ -32,11 +32,9 @@ class WorksController < ApplicationController
 
   def edit
     @work = Work.find(params[:id])
-    is_matching_login_user
   end
 
   def update
-    is_matching_login_user
     @work = Work.find(params[:id])
     if @work.update(work_params)
       flash[:notice] = '投稿を編集しました'

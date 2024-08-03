@@ -6,7 +6,11 @@ class SearchesController < ApplicationController
     @works_page = Work.page(params[:page]).order(created_at: :desc)
     @users_page = User.page(params[:page]).order(created_at: :desc)
 
-    if @range == 'User'
+    if params[:word].present? || params[:word].empty?
+      flash[:alert] = "入力内容がありません"
+      redirect_to request.referer
+      return
+    elsif @range == 'User'
       @users = User.looks(params[:search], params[:word])
     elsif @range == 'Work'
       @works = Work.looks(params[:search], params[:word])

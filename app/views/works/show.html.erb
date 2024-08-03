@@ -1,3 +1,4 @@
+<%= render partial: 'layouts/error_messages', locals: { object: @comment } %>
 <% if @work.user == current_user %>
   <div class="d-flex justify-content-between">
     <div class="dropdown col-2 pl-0">

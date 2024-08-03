@@ -3,20 +3,6 @@ class Admin::CommentsController < ApplicationController
 
   layout 'admin'
 
-  def edit
-    @comment = Comment.find(params[:id])
-  end
-
-  def update
-    @comment = Comment.find(params[:id])
-    if @comment.update(admin_comment_params)
-      flash[:notice] = "コメントを編集しました"
-      redirect_to admin_work_path(@comment.work)
-    else
-      flash.now[:alert] = "編集に失敗しました"
-      render :edit
-    end
-  end
 
   def destroy
     @work = Work.find(params[:work_id])
