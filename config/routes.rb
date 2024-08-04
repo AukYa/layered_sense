@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy]
   end
   resources :tags,　only: [:show]
+  resources :groups
   get 'search' => 'searches#search'
   get 'homes/top'
   get 'homes/about', to: 'homes#about', as: :about

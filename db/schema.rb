@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_07_27_082539) do
+ActiveRecord::Schema.define(version: 2024_08_04_090342) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -62,11 +62,30 @@ ActiveRecord::Schema.define(version: 2024_07_27_082539) do
     t.index ["work_id"], name: "index_comments_on_work_id"
   end
 
+  create_table "group_menbers", force: :cascade do |t|
+    t.integer "group_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_group_menbers_on_group_id"
+    t.index ["user_id"], name: "index_group_menbers_on_user_id"
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "introduction"
+    t.integer "owner_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["owner_id"], name: "index_groups_on_owner_id"
+  end
+
   create_table "tag_relationships", force: :cascade do |t|
     t.integer "work_id"
     t.integer "tag_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index "\"group_id\", \"user_id\"", name: "index_tag_relationships_on_group_id_and_user_id", unique: true
     t.index ["tag_id"], name: "index_tag_relationships_on_tag_id"
     t.index ["work_id", "tag_id"], name: "index_tag_relationships_on_work_id_and_tag_id", unique: true
     t.index ["work_id"], name: "index_tag_relationships_on_work_id"
@@ -102,6 +121,9 @@ ActiveRecord::Schema.define(version: 2024_07_27_082539) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "group_menbers", "groups"
+  add_foreign_key "group_menbers", "users"
+  add_foreign_key "groups", "owners"
   add_foreign_key "tag_relationships", "tags"
   add_foreign_key "tag_relationships", "works"
 end
