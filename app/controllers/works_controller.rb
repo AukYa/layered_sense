@@ -57,8 +57,8 @@ class WorksController < ApplicationController
   private
   
   def is_matching_login_user
-    @user = User.find(id: params[:work][:user_id])
-    unless @user.id == current_user.id
+    @work = Work.find(params[:id])
+    unless @work.user_id == current_user.id
       flash[:alert] = "利用できません"
       redirect_to homes_top_path
     end
