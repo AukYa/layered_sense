@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
   def index
+    @groups = Group.page(params[:page]).order(created_at: :desc)
   end
 
   def edit
@@ -17,12 +18,13 @@ class GroupsController < ApplicationController
     @group.owner_id = current_user.id
     if @group.save
       flash[:notice] = "グループを作成しました"
-      redirect_to group_path(@group)
+      redirect_to groups_path
     else
       flash.now[:alert] = "グループの作成に失敗しました"
       render :new
     end
   end
+
 
   def show
   end

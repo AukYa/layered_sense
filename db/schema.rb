@@ -84,7 +84,6 @@ ActiveRecord::Schema.define(version: 2024_08_04_090342) do
     t.integer "tag_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index "\"group_id\", \"user_id\"", name: "index_tag_relationships_on_group_id_and_user_id", unique: true
     t.index ["tag_id"], name: "index_tag_relationships_on_tag_id"
     t.index ["work_id", "tag_id"], name: "index_tag_relationships_on_work_id_and_tag_id", unique: true
     t.index ["work_id"], name: "index_tag_relationships_on_work_id"

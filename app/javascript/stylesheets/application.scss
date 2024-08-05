@@ -52,3 +52,10 @@ body {
   color: #930403;
   border: solid 1px #930403;
 }
+
+.introduction_hidden {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4; 
+}
