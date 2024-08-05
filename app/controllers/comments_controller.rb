@@ -1,6 +1,5 @@
 class CommentsController < ApplicationController
   def create
-    #byebug
     @work = Work.find(params[:work_id])
     @comment = Comment.new(comment_params)
     @comment.work_id = @work.id

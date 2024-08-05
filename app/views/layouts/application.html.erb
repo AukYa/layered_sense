@@ -48,17 +48,23 @@
             <ul class="navbar-nav ml-auto">
               <% if user_signed_in? %>
                 <!--ログイン状態-->
-                <li>
-                  <% if current_user.guest_user? %>
-                    <%= link_to new_work_path, class: 'nav-link disabled text-light' do  %>
-                      <div class="rounded-element">New Post</div>
-                    <% end %>
-                  <% else %>
-                    <%= link_to new_work_path, class: 'nav-link text-light' do  %>
-                      <div class="rounded-element">New Post</div>
-                    <% end %>
-                  <% end %>
-                </li>
+                  <li class="nav-item">
+                    <div class="dropdown nav-link">
+                      <% if current_user.guest_user? %>
+                        <div class="dropdown-toggle header_dropdown-toggle rounded-element disabled" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          New post
+                        </div>
+                      <% else %>
+                        <div class="dropdown-toggle header_dropdown-toggle rounded-element" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          New post
+                        </div>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <%= link_to "Work", new_work_path, class: 'nav-link text-light text-dark' %>
+                          <%= link_to "Group", new_group_path, class: 'nav-link text-light text-dark' %>
+                        </div>
+                      <% end %>
+                    </div>
+                  </li>
                 <li>
                   <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-light' do  %>
                     <i class="fa-solid fa-right-from-bracket"></i>Log out

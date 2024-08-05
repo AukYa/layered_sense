@@ -77,7 +77,6 @@ ActiveRecord::Schema.define(version: 2024_08_04_090342) do
     t.integer "owner_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["owner_id"], name: "index_groups_on_owner_id"
   end
 
   create_table "tag_relationships", force: :cascade do |t|
@@ -123,7 +122,6 @@ ActiveRecord::Schema.define(version: 2024_08_04_090342) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "group_menbers", "groups"
   add_foreign_key "group_menbers", "users"
-  add_foreign_key "groups", "owners"
   add_foreign_key "tag_relationships", "tags"
   add_foreign_key "tag_relationships", "works"
 end
