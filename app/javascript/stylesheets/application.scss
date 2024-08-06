@@ -40,13 +40,13 @@ body {
   color: #aaa;
   font-size: 80%;
 }
- 
+
 .flash-message.notice {
   background-color: #bcdfff;
   color: #0067C0;
   border: solid 1px #0067C0;
 }
- 
+
 .flash-message.alert {
   background-color: #ffd4d1;
   color: #930403;
@@ -57,5 +57,9 @@ body {
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4; 
+  -webkit-line-clamp: 4;
+}
+
+.text_long {
+  white-space: pre-wrap;
 }

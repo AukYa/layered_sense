@@ -2,6 +2,7 @@ class Work < ApplicationRecord
   has_one_attached :music_file
 
   belongs_to :user
+  belongs_to :group, dependent: :destroy
   has_many :tag_relationships, dependent: :destroy
   has_many :tags, through: :tag_relationships
   has_many :comments, dependent: :destroy

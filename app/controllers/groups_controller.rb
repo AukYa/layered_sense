@@ -27,6 +27,10 @@ class GroupsController < ApplicationController
 
 
   def show
+    @group = Group.find(params[:id])
+    @works = @group.works.page(params[:page]).order(created_at: :desc)
+    @comment = Comment.new
+    @comments = @group.comments
   end
 
   def destroy
