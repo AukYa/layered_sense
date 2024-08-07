@@ -1,10 +1,10 @@
 class Group < ApplicationRecord
   has_one_attached :group_image
 
-  has_many :group_manbers, dependent: :destroy
+  has_many :memberships, dependent: :destroy
   has_many :works
-  has_many :users, through: :group_menbers
-  has_many :comments, dependent: :destroy
+  has_many :users, through: :memberships
+  has_many :chats, dependent: :destroy
   belongs_to :owner, class_name: "User"
 
   validates :title, presence: true
@@ -21,5 +21,9 @@ class Group < ApplicationRecord
 
   def is_owned_by?(user)
     owner_id == user.id
+  end
+  
+  def includesUser?(user)
+    memberships.where(user_id: user.id).exists?
   end
 end

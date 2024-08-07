@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_08_06_071335) do
+ActiveRecord::Schema.define(version: 2024_08_07_115159) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -52,14 +52,22 @@ ActiveRecord::Schema.define(version: 2024_08_06_071335) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "chats", force: :cascade do |t|
+    t.text "chat", null: false
+    t.integer "group_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_chats_on_group_id"
+    t.index ["user_id"], name: "index_chats_on_user_id"
+  end
+
   create_table "comments", force: :cascade do |t|
     t.text "content", null: false
     t.integer "work_id", null: false
     t.integer "user_id", null: false
-    t.integer "group_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["group_id"], name: "index_comments_on_group_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
     t.index ["work_id"], name: "index_comments_on_work_id"
   end
@@ -79,6 +87,15 @@ ActiveRecord::Schema.define(version: 2024_08_06_071335) do
     t.integer "owner_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "memberships", force: :cascade do |t|
+    t.integer "group_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_memberships_on_group_id"
+    t.index ["user_id"], name: "index_memberships_on_user_id"
   end
 
   create_table "tag_relationships", force: :cascade do |t|
@@ -124,6 +141,8 @@ ActiveRecord::Schema.define(version: 2024_08_06_071335) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "group_menbers", "groups"
   add_foreign_key "group_menbers", "users"
+  add_foreign_key "memberships", "groups"
+  add_foreign_key "memberships", "users"
   add_foreign_key "tag_relationships", "tags"
   add_foreign_key "tag_relationships", "works"
 end

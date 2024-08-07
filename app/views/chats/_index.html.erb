@@ -1,0 +1,36 @@
+<div class="container">
+ <div class="row">
+   <% @chats.each do |chat| %> <br />
+    <div class="col-2 mb-3">
+     <% if chat.user.guest_user? %>
+      <%= image_tag chat.user.get_profile_image(50, 50), class: "rounded-circle border" %>
+      <%= chat.user.name %>
+     <% else %>
+      <%= link_to user_path(chat.user.id), class: "text-dark" do %>
+       <%= image_tag chat.user.get_profile_image(50, 50), class: "rounded-circle border" %>
+       <div>
+        <%= chat.user.name %>
+       </div>
+      <% end %>
+     <% end %>
+    </div>
+    <div class="col-9 mb-3">
+     <%= chat.chat %>
+    </div>
+    <div class="col-1 mb-3">
+     <% if chat.user == current_user %>
+      <div class="dropend">
+        <div class="dropend-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa-solid fa-ellipsis"></i>
+        </div>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <%= link_to "削除", group_chats_path(chat.group, chat), method: :delete, "data-confirm" => "削除しますか？", class: 'text-dark' %>
+        </div>
+      </div>
+     <% end %>
+    </div>
+   <% end %>
+ </div>
+</div>
+
+

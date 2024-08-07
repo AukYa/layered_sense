@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
-    <%= form_with model:[@group, @comment], url: group_path, local: true, class: "d-flex w-100" do |f| %>
+    <%= form_with model:[@group, @chat], url: group_chats_path(@group), local: true, class: "d-flex w-100" do |f| %>
       <div class="col-1"><%= image_tag current_user.get_profile_image(50, 50), class: "rounded-circle border"; %></div>
-      <div class="col-9"><%= f.text_area :content, placeholder: "コメントを入力", class: "w-100" %></div>
+      <div class="col-9"><%= f.text_area :chat, placeholder: "コメントを入力", class: "w-100" %></div>
       <div class="col-2 text-center"><%= f.submit "送信", class: "rounded-element w-100" %></div>
     <% end %>
   </div>

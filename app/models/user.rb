@@ -8,8 +8,9 @@ class User < ApplicationRecord
 
   has_many :works, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :group_manbers, dependent: :destroy
-  has_many :groups, through: :group_menbers, dependent: :destroy
+  has_many :chats, dependent: :destroy
+  has_many :memberships, dependent: :destroy
+  has_many :groups, through: :memberships, dependent: :destroy
   
   validates :name, presence: true, length: {maximum: 24}
   validates :introduction, length: {maximum: 1000}
