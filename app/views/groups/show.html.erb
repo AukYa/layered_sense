@@ -1,21 +1,31 @@
 <%= render "info", group: @group %>
 <hr />
-<ul class="nav nav-tabs">
+<ul class="nav nav-tabs justify-content-center mb-5">
   <li class="nav-item">
-    <button class="nav-link active" data-toggle="tab" data-target="#chat_page" type="button">Chat</button>
+    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#chat" type="button">
+      Chat
+    </button>
   </li>
   <li class="nav-item">
-    <button class="nav-link" data-toggle="tab" data-target="#works_page" type="button">Works</button>
+    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#works" type="button">
+      Works
+    </button>
+  </li>
+  <li class="nav-item">
+    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#post" type="button">
+      Work Post
+    </button>
   </li>
 </ul>
 <div class="tab-content">
-  <div class="tab-pane active" aria-current="page" id="chat_page">
+  <div id="chat" class="tab-pane active">
     <%= render "chats/form" %>
     <%= render 'chats/index' %>
   </div>
-  <div class="tab-content">
-    <div class="tab-pane" id="works_page">
-      <div class="container">
+</div>
+<div class="tab-content">
+  <div id="works" class="tab-pane">
+    <div class="container">
         <div class="row">
          <% @works.each do |work| %>
           <div class="text-center mb-5 col-lg-2">
@@ -36,6 +46,10 @@
         </div>
         <%= paginate @works %>
       </div>
-    </div>
+  </div>
+</div>
+<div class="tab-content">
+  <div id="post" class="tab-pane">
+    <%= render "works/form", work: @work %>
   </div>
 </div>
