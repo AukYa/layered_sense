@@ -26,4 +26,18 @@ class Group < ApplicationRecord
   def includesUser?(user)
     memberships.where(user_id: user.id).exists?
   end
+  
+  def self.looks(search, word)
+      if search == "perfect_match"
+        @group = Group.where("title LIKE?", "#{word}")
+      elsif search == "foward_macth"
+        @group = Group.where("title LIKE?", "#{word}%")
+      elsif search == "backward_match"
+        @group = Group.where("title LIKE?", "%#{word}")
+      elsif search == "partial_match"
+        @group = Group.where("title LIKE?", "%#{word}%")
+      else
+        @group = Group.all
+      end
+    end
 end

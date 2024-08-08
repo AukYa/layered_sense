@@ -1,0 +1,20 @@
+<div class="text-center">
+  <p><%= audio_tag(polymorphic_path(@work.music_file), controls: true) %></p>
+</div>
+<p>Title</p>
+<h3><%= @work.title %></h3>
+<hr />
+<%= link_to user_path(@work.user.id), class: "text-dark" do  %>
+  <p><%= image_tag @work.user.get_profile_image(100, 100), class: "rounded-circle border" %> <%= @work.user.name %></p>
+<% end %>
+<p>Introduction</p>
+<%= @work.introduction %> <br />
+<p></p>
+<hr />
+<% @work.tags.each do |tag| %>
+  <span class="border border-1 rounded-pill tag_view">#<%= link_to tag.tag_name, tag_path(tag), class: "text-dark" %></span>
+<% end %>
+<p></p>
+<div class="sub_text">
+  <p>投稿日：<%= @work.created_at.strftime('%Y/%m/%d') %></p>
+</div>

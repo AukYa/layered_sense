@@ -1,0 +1,31 @@
+<%= form_with model: @group do |f| %>
+  <div class="row mt-5">
+    <div class="col-lg-3">
+      <%= f.label :group_image %>
+    </div>
+    <div class="col-lg-8 offset-1 pl-0 pr-0">
+      <%= f.file_field :group_image, placeholder: "グループ画像", accept: "image/*" %>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-lg-3">
+      <%= f.label :title %>
+    </div>
+    <div class="col-lg-8 offset-1 pl-0 pr-0">
+      <%= f.text_field :title, placeholder: "タイトル", class: "w-100" %>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-lg-3">
+      <%= f.label :introduction %>
+    </div>
+    <div class="col-lg-8 offset-1 pl-0 pr-0">
+      <%= f.text_area :introduction, placeholder: "説明文", class: "w-100" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="offset-lg-6 col-lg-6 text-right mt-4 pr-0">
+      <%= f.submit 'Post' %>
+    </div>
+  </div>
+<% end %>
