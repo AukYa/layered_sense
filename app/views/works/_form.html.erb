@@ -2,6 +2,9 @@
   <div class="row justify-content-center">
     <div class="w-75">
       <%= form_with model: @work do |f| %>
+        <% if @group %>
+          <%= hidden_field_tag 'work[group_id]', @group.id %>
+        <% end %>
         <div class="row">
           <div class="col-lg-3">
             <%= f.label :music_file %>

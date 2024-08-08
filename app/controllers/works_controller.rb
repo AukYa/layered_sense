@@ -65,6 +65,6 @@ class WorksController < ApplicationController
   end
 
   def work_params
-    params.require(:work).permit(:name, :introduction, :music_file, :title)
+    params.require(:work).permit(:name, :introduction, :music_file, :title, :group_id)
   end
 end

@@ -1,6 +1,18 @@
 <div class="container">
   <div class="row">
-    <%= image_tag group.get_image(90, 90), class: "border" %>
+    <div class="col-3 p-0">
+      <%= image_tag group.get_image(90, 90), class: "border" %>
+    </div>
+    <div class="col-3 offset-6 align-content-center text-right p-0">
+      <% if group.is_owned_by?(current_user) %>
+        <%= link_to 'Edit', edit_group_path(group), class: "btn btn-primary group_#{group.id}" %>
+        <%= link_to 'Delete',group_path(group), method: :delete, "data-confirm" => "削除しますか？", class: "btn btn-danger"%> 
+      <% elsif group.includesUser?(current_user) %>
+        <%= link_to 'Leave this group', group_memberships_path(group), method: :delete, class: "btn btn-sm btn-danger" %>
+      <% else %>
+        <%= link_to 'Join this group', group_memberships_path(group), method: :post, class: "btn btn-sm btn-success" %>
+      <% end %>
+    </div>
   </div>
   <div class="row"><h4><%= group.title %></h4></div>
   <div class="row text_long"><%= group.introduction %></div>

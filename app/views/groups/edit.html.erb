@@ -1,36 +1,41 @@
-<ul class="nav nav-tabs">
-  <li class="nav-item">
-    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#photo1" type="button">
-      タブ1
-    </button>
-  </li>
-  <li class="nav-item">
-    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#photo2" type="button">タブ2</button>
-  </li>
-  <li class="nav-item">
-    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#photo3" type="button">タブ3</button>
-  </li>
-  <li class="nav-item">
-    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#photo4" type="button">タブ4</button>
-  </li>
-</ul>
-<div class="tab-content">
-  <div id="photo1" class="tab-pane active">
-    写真➀
-  </div>
+<%= render partial: 'layouts/error_messages', locals: { object: @group } %>
+<div class="d-flex justify-content-center">
+  <h1 class="page_title">Group Edit</h1>
 </div>
-<div class="tab-content">
-  <div id="photo2" class="tab-pane">
-    写真➁
-  </div>
-</div>
-<div class="tab-content">
-  <div id="photo3" class="tab-pane">
-    写真➂
-  </div>
-</div>
-<div class="tab-content">
-  <div id="photo4" class="tab-pane">
-    写真➃
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="w-75">
+      <%= form_with model: @group do |f| %>
+        <div class="row">
+          <div class="col-lg-3">
+            <%= f.label :group_image %>
+          </div>
+          <div class="col-lg-8 offset-1 pl-0 pr-0">
+            <%= f.file_field :group_image, accept: "image/*" %>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col-lg-3">
+            <%= f.label :title %>
+          </div>
+          <div class="col-lg-8 offset-1 pl-0 pr-0">
+            <%= f.text_field :title, placeholder: "タイトル", class: "w-100" %>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col-lg-3">
+            <%= f.label :introduction %>
+          </div>
+          <div class="col-lg-8 offset-1 pl-0 pr-0">
+            <%= f.text_area :introduction, placeholder: "説明文", class: "w-100" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="offset-lg-6 col-lg-6 text-right mt-4 pr-0">
+            <%= f.submit 'Save Changes' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
