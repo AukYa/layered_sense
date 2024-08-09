@@ -1,0 +1,23 @@
+<%= form_with model: [@question, @answer], local: true, html: {class: "form"} do |f| %>
+  <div class="row mt-5">
+    <div class="col-lg-3">
+      <%= f.label :content %>
+    </div>
+    <div class="col-lg-8 offset-1 pl-0">
+      <%= f.text_area :content, placeholder: "内容", class: "w-100" %>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-lg-3">
+      <%= f.label :attachments_file %>
+    </div>
+    <div class="col-lg-8 offset-1 pl-0">
+      <%= f.file_field :attachments_file, accept: "image/*, audio/*" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="offset-lg-6 col-lg-6 text-right mt-4">
+      <%= f.submit 'Post' %>
+    </div>
+  </div>
+<% end %>

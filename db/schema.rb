@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_08_07_115159) do
+ActiveRecord::Schema.define(version: 2024_08_09_020313) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -50,6 +50,17 @@ ActiveRecord::Schema.define(version: 2024_08_07_115159) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "answers", force: :cascade do |t|
+    t.text "content", null: false
+    t.boolean "is_best_answer", default: false, null: false
+    t.integer "question_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["question_id"], name: "index_answers_on_question_id"
+    t.index ["user_id"], name: "index_answers_on_user_id"
   end
 
   create_table "chats", force: :cascade do |t|
@@ -98,6 +109,15 @@ ActiveRecord::Schema.define(version: 2024_08_07_115159) do
     t.index ["user_id"], name: "index_memberships_on_user_id"
   end
 
+  create_table "questions", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "content", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_questions_on_user_id"
+  end
+
   create_table "tag_relationships", force: :cascade do |t|
     t.integer "work_id"
     t.integer "tag_id"
@@ -139,10 +159,13 @@ ActiveRecord::Schema.define(version: 2024_08_07_115159) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "answers", "questions"
+  add_foreign_key "answers", "users"
   add_foreign_key "group_menbers", "groups"
   add_foreign_key "group_menbers", "users"
   add_foreign_key "memberships", "groups"
   add_foreign_key "memberships", "users"
+  add_foreign_key "questions", "users"
   add_foreign_key "tag_relationships", "tags"
   add_foreign_key "tag_relationships", "works"
 end

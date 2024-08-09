@@ -24,7 +24,7 @@
           <i class="fa-solid fa-ellipsis"></i>
         </div>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <%= link_to "削除", group_chats_path(chat.group, chat), method: :delete, "data-confirm" => "削除しますか？", class: 'text-dark' %>
+          <%= link_to "削除", group_chat_path(chat.group, chat), method: :delete, "data-confirm" => "削除しますか？", class: 'text-dark' %>
         </div>
       </div>
      <% end %>

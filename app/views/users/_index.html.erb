@@ -2,7 +2,7 @@
   <div class="col-lg-2 pl-5 text-center" >
     <% unless user.guest_user? %>
       <%= link_to user_path(user.id), class: "text-dark" do %>
-        <%= image_tag user.get_profile_image(100, 100), class: "rounded-circle border"; %>
+        <%= image_tag user.get_profile_image(90, 90), class: "rounded-circle border"; %>
         <h6><%= user.name %></h6>
       <% end %>
     <% end %>

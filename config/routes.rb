@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'questions/index'
+  get 'questions/show'
+  get 'questions/edit'
+  get 'questions/new'
   devise_for :admin, skip: [:registrations, :password], controllers: {
     sessions: 'admin/sessions'
   }
@@ -20,7 +24,11 @@ Rails.application.routes.draw do
   resources :tags,　only: [:show]
   resources :groups do
     resource :memberships, only: [:create, :destroy]
-    resource :chats, only: [:create, :destroy]
+    resources :chats, only: [:create, :destroy]
+  end
+  resources :questions do
+    resources :answers, only: [:edit, :update, :create, :destroy]
+    patch 'best'
   end
   get 'search' => 'searches#search'
   get 'homes/top'

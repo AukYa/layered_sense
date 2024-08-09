@@ -12,13 +12,18 @@ class WorksController < ApplicationController
     if @work.save
       @work.save_tags(tag_list)
       flash[:notice] = '投稿しました'
-      redirect_to user_path(current_user.id)
+      
+      if @work.group_id.nil?
+        redirect_to user_path(current_user.id)
+      else
+        redirect_to work_path(@work.group_id)
+      end
     else
       flash.now[:alert] = "投稿に失敗しました"
       render :new
     end
   end
-
+    
   def index
     @works = Work.page(params[:page]).order(created_at: :desc)
     @users = User.all

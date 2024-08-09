@@ -5,10 +5,18 @@ class GroupsController < ApplicationController
 
   def edit
     @group = Group.find(params[:id])
+    unless @group.is_owned_by?(current_user)
+      flash[:alert] = '利用できません'
+      redirect_to homes_top_path
+    end
   end
 
   def update
     @group = Group.find(params[:id])
+    unless @group.is_owned_by?(current_user)
+      flash[:alert] = '利用できません'
+      redirect_to homes_top_path
+    end
     if @group.update(group_params)
       flash[:notice] = 'グループを編集しました'
       redirect_to group_path(@group)

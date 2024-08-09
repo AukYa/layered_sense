@@ -2,7 +2,6 @@ class ChatsController < ApplicationController
   def create
     @group = Group.find(params[:group_id])
     @chat = Chat.new(chat_params)
-    # ここでbyebugで確認すると、chat_idはnil
     @chat.group_id = @group.id
     @chat.user_id = current_user.id
     if @chat.save

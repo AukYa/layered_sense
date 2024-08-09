@@ -1,19 +1,7 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="w-75">
-      <%= form_with model: @work do |f| %>
-        <% if @group %>
-          <%# hidden_field_tag 'work[group_id]', @group.id %>
-          <%= f.hidden_field :group_id, value: @group.id %>
-        <% end %>
-        <div class="row">
-          <div class="col-lg-3">
-            <%= f.label :music_file %>
-          </div>
-          <div class="col-lg-8 offset-1 pl-0 pr-0">
-            <%= f.file_field :music_file, accept: "audio/*" %>
-          </div>
-        </div>
+      <%= form_with model: @question do |f| %>
         <div class="row mt-5">
           <div class="col-lg-3">
             <%= f.label :title %>
@@ -24,18 +12,18 @@
         </div>
         <div class="row mt-5">
           <div class="col-lg-3">
-            <%= f.label :introduction %>
+            <%= f.label :content %>
           </div>
           <div class="col-lg-8 offset-1 pl-0 pr-0">
-            <%= f.text_area :introduction, placeholder: "説明文", class: "w-100" %>
+            <%= f.text_area :content, placeholder: "内容", class: "w-100" %>
           </div>
         </div>
         <div class="row mt-5">
           <div class="col-lg-3">
-            <%= f.label :tag_name %>
+            <%= f.label :attachments_file %>
           </div>
           <div class="col-lg-8 offset-1 pl-0 pr-0">
-            <%= f.text_field :tag_name, id:'tag_ids', :size=>"50", placeholder: "タグをつける。複数つけるには' , 'で区切ってください。", class: "w-100" %>
+            <%= f.file_field :attachments_file, accept: "image/*, audio/*" %>
           </div>
         </div>
         <div class="row">

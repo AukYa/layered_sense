@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <div class="col-3 p-0">
+      <%= link_to user_path(question.user.id), class: "text-dark" do  %>
+        <div><%= image_tag question.user.get_profile_image(50, 50), class: "rounded-circle border" %> <%= question.user.name %></div>
+      <% end %>
+    </div>
+  </div>
+  <p>Title</p>
+  <h3 class="ml-3"><%= question.title %></h3>
+  <p></p>
+  <p>Introduction</p>
+  <h6 class="ml-3"><%= question.content %></h6> <br />
+</div>
