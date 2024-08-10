@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_many :groups, through: :memberships, dependent: :destroy
   has_many :questions
   has_many :answers
+  has_many :favoites, dependent: :destroy
   
   validates :name, presence: true, length: {maximum: 24}
   validates :introduction, length: {maximum: 1000}

@@ -6,6 +6,7 @@ class Work < ApplicationRecord
   has_many :tag_relationships, dependent: :destroy
   has_many :tags, through: :tag_relationships
   has_many :comments, dependent: :destroy
+  has_many :favoites, dependent: :destroy
 
   validates :music_file, presence: true
   validates :title, length: {maximum: 64}, presence: true
