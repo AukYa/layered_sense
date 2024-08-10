@@ -1,3 +1,6 @@
+<div class="d-flex justify-content-center">
+  <h1 class="page_title">Question Topic</h1>
+</div>
 <div class="container">
   <div class="row justify-content-center">
     <div class="w-75">
@@ -5,7 +8,10 @@
       <hr />
       <%= render "answers/new" %>
       <hr />
-      <%= render "answers/index" %>
+      <% if @best_answer %>
+        <%= render "answers/best_answer" %>
+      <% end %>
+        <%= render "answers/index" %>
     </div>
   </div>
 </div>

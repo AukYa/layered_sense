@@ -1,2 +1,5 @@
-<h1>Questions#edit</h1>
-<p>Find me in app/views/questions/edit.html.erb</p>
+<%= render partial: 'layouts/error_messages', locals: { object: @question } %>
+<div class="d-flex justify-content-center">
+  <h1 class="page_title">Question Edit</h1>
+</div>
+<%= render "form", question: @question %>

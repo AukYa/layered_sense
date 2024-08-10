@@ -1,26 +1,37 @@
-<table class='table w-75 '>
-  <thead>
-    <tr>
-      <th>Content</th>
-      <th colspan="1"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @answers.each do |answer| %>
-      <tr>
-        <td><%= answer.content %>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="bestAnswerRadio" id="bestAnswerRadio">
-            <label class="form-check-label" for="bestAnswerRadio">
-              Best Answer
-            </label>
-          </div>
-        </td>
-      </tr>
-    <% end %>
-    <% if @answer.is_best_answer == false %>
-      <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" checked>
-      <label class="btn btn-secondary" for="option1"><%= link_to "Best Select", question_best_path(@question, @answer) %></label>
-    <% end %>
-  </tbody>
-</table>
+<div class="row">
+  <% @other_answers.each do |answer| %>
+    <div class="col-12">
+      <div class="card mb-5">
+        <div class="card-body">
+          <h6 class="card-title">
+            <div class="row">
+              <div class="col-8">
+                <%= link_to user_path(answer.user.id), class: "text-dark" do  %>
+                  <div><%= image_tag answer.user.get_profile_image(50, 50), class: "rounded-circle border" %> <%= answer.user.name %></div>
+                <% end %>
+              </div>
+              <div class="col-3 text-right">
+                <% if answer.is_best_answer == false %>
+                  <%= link_to "Best Select", question_answer_best_path(@question,answer ), method: :patch, "data-confirm" => "ベストアンサーにしますか？", class: "btn btn-primary" %>
+                <% end %>
+              </div>
+              <div class="col-1">
+                <div class="dropend">
+                  <div class="dropend-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa-solid fa-ellipsis"></i>
+                  </div>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <%= link_to "削除", question_answer_path(answer.question, answer), method: :delete, "data-confirm" => "削除しますか？", class: 'text-dark' %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="sub_text"><%= answer.created_at.strftime('%Y/%m/%d') %></div>
+          </h6>
+          <p class="card-text　text_long"><%= answer.content %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+

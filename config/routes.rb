@@ -27,8 +27,9 @@ Rails.application.routes.draw do
     resources :chats, only: [:create, :destroy]
   end
   resources :questions do
-    resources :answers, only: [:edit, :update, :create, :destroy]
-    patch 'best'
+    resources :answers, only: [:create, :destroy] do
+      patch 'best'
+    end
   end
   get 'search' => 'searches#search'
   get 'homes/top'

@@ -1,11 +1,5 @@
 class AnswersController < ApplicationController
-  before_action :set_question, only: [:edit, :update, :create, :destroy]
-
-  def edit
-  end
-
-  def update
-  end
+  before_action :set_question, only: [:create, :destroy]
 
   def create
     @answer = Answer.new(answer_params)
@@ -21,7 +15,27 @@ class AnswersController < ApplicationController
   end
 
   def destroy
+    @question_answers = @question.answers
+    Answer.find_by(id: params[:id], question_id: params[:question_id]).destroy
+    flash[:notice] = "削除しました"
+    redirect_to request.referer
   end
+  
+  def best
+    @answer = Answer.find(params[:answer_id])
+    question = Question.find(params[:question_id])
+    if  question.answers.find_by(is_best_answer: true)
+      question.answers.find_by(is_best_answer: true).update(is_best_answer: false)
+    end
+    @answer.update(is_best_answer: true)
+    redirect_to request.referer
+  end
+  
+  # def best_off
+  #   @answer = Answer.find(params[:answer_id])
+  #   @answer.update(is_best_answer: false)
+  #   redirect_to request.referer
+  # end
 
   private
 
