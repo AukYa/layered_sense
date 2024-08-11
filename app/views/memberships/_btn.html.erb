@@ -1,0 +1,10 @@
+<% if membership.group.is_owned_by?(current_user) %>
+  <td><%= link_to 'Show', group_path(membership.group), class: "btn btn-primary" %></td>
+  <td><%= link_to 'Edit', edit_group_path(membership.group), class: "btn btn-primary" %></td>
+<% elsif membership.group.includesUser?(current_user) %>
+  <td><%= link_to 'Show', group_path(membership.group), class: "btn btn-primary" %></td>
+  <td><%= link_to 'Leave this group', group_memberships_path(membership.group), method: :delete, class: "btn btn-sm btn-danger", remote: true %></td>
+<% else %>
+  <td><%= link_to 'Show', group_path(membership.group), class: "btn btn-primary" %></td>
+  <td><%= link_to 'Join this group', group_memberships_path(membership.group), method: :post, class: "btn btn-sm btn-success", remote: true %></td>
+<% end %>

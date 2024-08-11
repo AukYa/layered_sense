@@ -25,9 +25,14 @@
       <%= render "info", work: @work %>
       <hr />
       <p></p>
+      <div class='comments/counter mb-3'>
+        <%= render 'comments/counter', work: @work %>
+      </div>
       <%= render 'comments/form' %>
       <p></p>
-      <%= render 'comments/index' %>
+      <div class='comments/index'>
+        <%= render 'comments/index', work: @work %>
+      </div>
     </div>
   </div>
 </div>

@@ -16,10 +16,15 @@
   </div>
   <div class="row"><h4><%= group.title %></h4></div>
   <div class="row text_long"><%= group.introduction %></div>
-  <div class="row align-items-center justify-content-end">
-    <h5 class="mr-2">group owner: </h5>
-    <%= link_to user_path(@group.owner_id), class: "text-dark" do %>
-      <%= image_tag @group.owner.get_profile_image(50, 50), class: "rounded-circle border" %> <%= @group.owner.name %>
-    <% end %>
+  <div class="row align-items-center">
+    <div class="col-6 chats/counter">
+      <%= render 'chats/counter', group: @group %>
+    </div>
+    <div class="col-6 text-right">
+      <span class="h5 mr-2">group owner: </span>
+      <%= link_to user_path(@group.owner_id), class: "text-dark" do %>
+        <%= image_tag @group.owner.get_profile_image(50, 50), class: "rounded-circle border" %> <%= @group.owner.name %>
+      <% end %>
+    </div>
   </div>
 </div>
