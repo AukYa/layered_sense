@@ -1,0 +1,11 @@
+<% if work.favorited_by?(current_user) %>
+  <%= link_to work_favorites_path(work), method: :delete, remote: true do %>
+    <i class="fa-solid fa-star fa-la" aria-hidden="true" style="color: #ff0982;"></i>
+    <%= work.favorites.count %>
+  <% end %>
+<% else %>
+  <%= link_to work_favorites_path(work), method: :post, remote: true do %>
+    <i class="fa-solid fa-star fa-la" aria-hidden="true"></i>
+    <%= work.favorites.count %>
+  <% end %>
+<% end %>

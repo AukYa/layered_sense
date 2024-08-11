@@ -1,7 +1,7 @@
 <div class="text-center">
   <p><%= audio_tag(polymorphic_path(@work.music_file), controls: true) %></p>
 </div>
-<hr /
+<hr />
 <p>Title</p>
 <h3><%= @work.title %></h3>
 <hr />
@@ -16,6 +16,11 @@
   <span class="border border-1 rounded-pill tag_view">#<%= link_to tag.tag_name, tag_path(tag), class: "text-dark" %></span>
 <% end %>
 <p></p>
-<div class="sub_text">
-  <p>投稿日：<%= @work.created_at.strftime('%Y/%m/%d') %></p>
+<div class="row">
+  <div class="col-10">
+    <p class="sub_text">投稿日：<%= @work.created_at.strftime('%Y/%m/%d') %></p>
+  </div>
+  <div class="col-2 favorite-<%= @work.id %>">
+    <%= render 'favorites/btn', work: work %>
+  </div>
 </div>

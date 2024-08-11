@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   resources :works do
     resources :comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
+    get 'favorites' => 'favorites#index'
   end
   resources :tags,　only: [:show]
   resources :groups do
