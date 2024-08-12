@@ -18,20 +18,23 @@
     <h1 class="page_title">Work Detail</h1>
   </div>
 <% end %>
-
 <div class="container">
   <div class="row justify-content-center">
     <div class="w-75">
-      <%= render "info", work: @work %>
-      <hr />
-      <p></p>
-      <div class='comments/counter mb-3'>
-        <%= render 'comments/counter', work: @work %>
-      </div>
-      <%= render 'comments/form' %>
-      <p></p>
-      <div class='comments/index'>
-        <%= render 'comments/index', work: @work %>
+      <div class="card">
+        <div class="card-body">
+          <%= render "info", work: @work %>
+          <hr />
+          <p></p>
+          <div class='comments/counter mb-3'>
+            <%= render 'comments/counter', work: @work %>
+          </div>
+          <%= render 'comments/form' %>
+          <p></p>
+          <div class='comments/index'>
+            <%= render 'comments/index', work: @work %>
+          </div>
+        </div>
       </div>
     </div>
   </div>

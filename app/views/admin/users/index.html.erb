@@ -7,10 +7,11 @@
       <% @users.each do |user| %>
       　<% unless user.guest_user? %>
         　●
-          <%=  link_to admin_user_path(user) do %>
+          <%= link_to admin_user_path(user) do %>
             <strong class="text-dark"><%= user.name %></strong>
           <% end %>
           - <%= user.email %>
+          - <%= user.user_status %>
         <% end %>
       <% end %>
     </div>

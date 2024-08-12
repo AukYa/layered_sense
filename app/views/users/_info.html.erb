@@ -4,9 +4,15 @@
   <h4><%= @user.introduction %></h4>
   <% unless @user.guest_user? || @user != current_user %>
   <div>
-    <%= link_to edit_user_path(@user), class: "text-dark" do %>
-      <i class="fa-regular fa-address-card btn btn-outline-secondary btn-block "></i>
-    <% end %>
+    <div class="dropend">
+      <div class="dropend-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fa-regular fa-address-card btn btn-outline-secondary btn-block "></i>
+      </div>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <%= link_to "プロフィールの編集", edit_user_path(@user), class: "text-dark" %>
+        <%= link_to "退会", user_withdraw_path(@user), method: :patch, "data-confirm" => "退会しますか？。", class: "text-dark" %>
+      </div>
+    </div>
   </div>
   <%= link_to "Bookmarks", work_favorites_path(@works) %>
   <% end %>

@@ -3,13 +3,19 @@ class MembershipsController < ApplicationController
 
   def create
     membership = current_user.memberships.new(group_id: params[:group_id])
-    membership.save
-    render 'replace_btn'
+    if membership.save
+      flash[:notice] = "グループに参加しました"
+      redirect_to request.referer
+    else
+      flash[:alert] = "失敗"
+      redirect_to request.referer
+    end
   end
 
   def destroy
     membership = current_user.memberships.find_by(group_id: params[:group_id])
     membership.destroy
-    render 'replace_btn'
+    flash[:notice] = "グループを退会しました"
+    redirect_to request.referer
   end
 end

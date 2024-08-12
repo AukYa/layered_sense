@@ -30,6 +30,12 @@ class User < ApplicationRecord
     def guest_user?
       email == GUEST_USER_EMAIL
     end
+    
+    def user_status
+      if is_deleted == true
+        "退会済みユーザー"
+      end
+    end
 
     def get_profile_image(width, height)
       unless profile_image.attached?

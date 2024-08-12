@@ -28,10 +28,10 @@ class Admin::UsersController < ApplicationController
     end
   end
 
-  def destroy
-    user = User.find(params[:id])
-    user.destroy
-    flash[:notice] = "ユーザーを削除しました"
+  def withdraw
+    user = User.find(params[:user_id])
+    user.update(is_deleted: true)
+    flash[:notice] = "退会を実行しました"
     redirect_to admin_users_path
   end
 

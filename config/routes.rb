@@ -1,15 +1,11 @@
 Rails.application.routes.draw do
-  get 'favorites/create'
-  get 'favorites/destroy'
-  get 'questions/index'
-  get 'questions/show'
-  get 'questions/edit'
-  get 'questions/new'
   devise_for :admin, skip: [:registrations, :password], controllers: {
     sessions: 'admin/sessions'
   }
   namespace :admin do
-    resources :users, only: [:index, :show, :edit, :update, :destroy]
+    resources :users, only: [:index, :show, :edit, :update] do
+      patch 'withdraw'
+    end
     resources :works, only: [:index, :show, :edit, :update, :destroy] do
       resources :comments, only: [:destroy]
     end
@@ -19,7 +15,9 @@ Rails.application.routes.draw do
   devise_scope :user do
     post "users/guest_sign_in", to: "users/sessions#guest_sign_in"
   end
-  resources :users, only: [:index, :show, :edit, :update]
+  resources :users, only: [:index, :show, :edit, :update] do
+    patch 'withdraw'
+  end
   resources :works do
     resources :comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]

@@ -30,6 +30,14 @@ class UsersController < ApplicationController
       render :edit
     end
   end
+  
+  def withdraw
+    user = User.find(params[:user_id])
+    user.update(is_deleted: true)
+    reset_session
+    flash[:notice] = "退会しました"
+    redirect_to about_path
+  end
 
   private
 
