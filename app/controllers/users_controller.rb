@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :ensure_guest_user, only: [:edit]
 
   def index
-    @users = User.page(params[:page]).order(created_at: :desc)
+    @users = User.page(params[:page]).per(30).order(created_at: :desc)
   end
 
   def show
@@ -11,7 +11,7 @@ class UsersController < ApplicationController
       @user = guestuserexit
     end
     @works = @user.works
-    @works_page = Work.page(params[:page]).order(created_at: :desc)
+    @works_page = Work.page(params[:page]).per(16).order(created_at: :desc)
   end
 
   def edit

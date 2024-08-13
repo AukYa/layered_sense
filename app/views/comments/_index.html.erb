@@ -1,10 +1,9 @@
 <div class="container">
  <% @comments.each do |comment| %> <br />
   <div class="row">
-    <div class="col-11 mb-3">
+    <div class="col-11">
      <% if comment.user.guest_user? %>
-      <%= image_tag comment.user.get_profile_image(50, 50), class: "rounded-circle border" %>
-      <%= comment.user.name %>
+      <%= image_tag comment.user.get_profile_image(50, 50), class: "rounded-circle border" %><%= comment.user.name %>
      <% else %>
       <%= link_to user_path(comment.user.id), class: "text-dark" do %>
        <%= image_tag comment.user.get_profile_image(50, 50), class: "rounded-circle border" %><%= comment.user.name %>
@@ -25,13 +24,13 @@
     </div>
    </div>
    <div class="row">
-    <div class="col-12 mb-2">
-     <%= comment.content %>
+    <div class="col-12">
+     <p class="sub_text"><%= comment.created_at.strftime('%Y/%m/%d') %></p>
     </div>
    </div>
    <div class="row">
-    <div class="col-12">
-     <p class="sub_text"><%= comment.created_at.strftime('%Y/%m/%d') %></p>
+    <div class="col-12 mb-2">
+     <div class="text_long"><%= comment.content %></div>
     </div>
    </div>
    <% end %>

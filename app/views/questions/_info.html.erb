@@ -23,7 +23,34 @@
         </div>
         <p class="card-text">
           <p>Content</p>
-          <h6 class="ml-3"><%= question.content %></h6>
+          <h6 class="text_long ml-3"><%= question.content %></h6>
+          <div class="attachments_file">
+            
+            
+            
+            
+            <%# TODO: 他のファイルにも似たような判定をしているのでそれぞれのモデル内でメソッドとして定義して再利用出来るようにするのがよさそう %>
+            <% if question.attachments_file.attached? %>
+              <%
+                tmp_file_url = rails_blob_path(question.attachments_file)
+                check_ext = File.extname(tmp_file_url).downcase
+                
+                # 音声として許可する拡張子
+                audio_ext_list = [
+                  '.wav',
+                  '.mp3'
+                ]
+              %>
+              
+              <%# 音声 %>
+              <% if audio_ext_list.include?(check_ext) %>
+                <p><%= audio_tag(polymorphic_path(question.attachments_file), controls: true) %></p>
+              <% else %>
+                <%# 画像 %>
+                <p><%= image_tag(polymorphic_path(question.attachments_file), controls: true) %></p>
+              <% end %>
+            <% end %>
+          </div>
         </p>
       </div>
     </div>

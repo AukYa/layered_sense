@@ -9,7 +9,7 @@
     <script src="https://kit.fontawesome.com/08f6dce76e.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    
+
     <!--Bootstrapに必要なJavaScriptの読み込み-->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -19,86 +19,7 @@
   </head>
 
   <body>
-    <header>
-      <!--ヘッダー左寄りの各リンク-->
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="/">
-            <span>Layered Sense</span>
-          </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="true" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse ml-1" id="navbarNavDropdown">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <% if user_signed_in? %>
-                  <div class="dropdown nav-link">
-                    <div class="dropdown-toggle header_dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Lists
-                    </div>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <%= link_to "Works", works_path, class: 'nav-link text-dark' %>
-                      <%= link_to "Users", users_path, class: 'nav-link text-dark' %>
-                      <%= link_to "Groups", groups_path, class: 'nav-link text-dark' %>
-                      <%= link_to "Q&A", questions_path, class: 'nav-link text-dark' %>
-                    </div>
-                  </div>
-                <% end %>
-              </li>
-            </ul>
-          </div>
-          <div class="d-flex justify-content-center col-lg-8">
-            <%= render 'searches/search' %>
-          </div>
-        <!--ヘッダー右寄りの各リンク-->
-          <div class="collapse navbar-collapse ml-auto" id="navbarNavDropdown">
-            <ul class="navbar-nav ml-auto align-items-center">
-              <% if user_signed_in? %>
-                <!--ログイン状態-->
-                  <li class="nav-item">
-                    <div class="dropdown nav-link">
-                      <% if current_user.guest_user? %>
-                        <div class="dropdown-toggle header_dropdown-toggle rounded-element disabled" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Unable New Post
-                        </div>
-                      <% else %>
-                        <div class="dropdown-toggle header_dropdown-toggle rounded-element" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          New Post
-                        </div>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          <%= link_to "Work", new_work_path, class: 'nav-link text-dark' %>
-                          <%= link_to "Group", new_group_path, class: 'nav-link text-dark' %>
-                          <%= link_to "Q&A", new_question_path, class: 'nav-link text-dark' %>
-                        </div>
-                      <% end %>
-                    </div>
-                  </li>
-                <li>
-                  <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-light' do  %>
-                    <i class="fa-solid fa-right-from-bracket"></i>Log out
-                  <% end %>
-                </li>
-              <% else %>
-                <!--ログアウト状態-->
-                <li>
-                  <%= link_to "About", about_path, class: 'nav-link text-light' %>
-                </li>
-                <li>
-                  <%= link_to "Sign up", new_user_registration_path, class: 'nav-link text-light' %>
-                </li>
-                <li>
-                  <%= link_to "Guest log in", users_guest_sign_in_path, method: :post, class: 'nav-link text-light' %>
-                </li>
-                <li>
-                  <%= link_to "Log in", new_user_session_path, class: 'nav-link text-light' %>
-                </li>
-              <% end %>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </header>
+    <%= render 'layouts/header' %>
     <main>
       <% flash.each do |message_type, message| %>
         <div class="flash-message text-center w-25 <%= message_type %>"><%= message %></div>

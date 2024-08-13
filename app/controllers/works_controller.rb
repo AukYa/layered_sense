@@ -25,14 +25,14 @@ class WorksController < ApplicationController
   end
     
   def index
-    @works = Work.page(params[:page]).order(created_at: :desc)
+    @works = Work.page(params[:page]).per(30).order(created_at: :desc)
     @users = User.all
   end
 
   def show
     @work = Work.find(params[:id])
     @comment = Comment.new
-    @comments = @work.comments
+    @comments = @work.comments.page(params[:page]).per(30).order(created_at: :desc)
   end
 
   def edit

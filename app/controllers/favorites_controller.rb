@@ -16,6 +16,6 @@ class FavoritesController < ApplicationController
   def index
     # @works = Work.where(user_id: current_user.id).favorite.present?
     @works = current_user.favorites.map(&:work)
-    @works_page = Work.page(params[:page]).order(created_at: :desc)
+    @works_page = Work.page(params[:page]).per(30).order(created_at: :desc)
   end
 end

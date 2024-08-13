@@ -2,12 +2,12 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
   
   def index
-    @questions = Question.page(params[:page]).order(created_at: :desc)
+    @questions = Question.page(params[:page]).per(20).order(created_at: :desc)
     
   end
 
   def show
-    @answers = @question.answers
+    @answers = @question.answers.page(params[:page]).per(10).order(created_at: :desc)
     @answer = Answer.new
     @best_answer = @answers.find_by(is_best_answer: true)
     @other_answers = @answers.where.not(id: @best_answer&.id) # ベストアンサー以外の回答を取得

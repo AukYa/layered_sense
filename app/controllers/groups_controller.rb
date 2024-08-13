@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
   def index
-    @groups = Group.page(params[:page]).order(created_at: :desc)
+    @groups = Group.page(params[:page]).per(20).order(created_at: :desc)
   end
 
   def edit
@@ -45,9 +45,9 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
-    @works = @group.works.page(params[:page]).order(created_at: :desc)
+    @works = @group.works.page(params[:page]).per(30).order(created_at: :desc)
     @chat = Chat.new
-    @chats = @group.chats
+    @chats = @group.chats.page(params[:page]).per(30).order(created_at: :desc)
     @work = @group.works.build
   end
 
