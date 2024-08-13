@@ -1,0 +1,66 @@
+<div class="d-flex justify-content-center">
+  <h1 class="page_title">Question Topic</h1>
+</div>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="w-75">
+      <div class="row">
+        <div class="col-12 mt-3">
+          <div class="card">
+            <div class="card-body">
+              <div class="card-title">
+                <div class="row">
+                  <div class="col-8">
+                    <p>Title</p>
+                    <h3 class="ml-3"><%= @question.title %></h3>
+                  </div>
+                  <div class="col-4 text-right">
+                    <%= link_to 'Edit', edit_admin_question_path(@question), class: "btn btn-primary" %>
+                    <%= link_to 'Delete', admin_question_path(@question), method: :delete, "data-confirm" => "削除しますか？", class: "btn btn-danger"%>
+                  </div>
+                </div>
+                <p class="pr-3 pl-3"><hr /></p>
+                <%= link_to user_path(@question.user.id), class: "text-dark" do  %>
+                  <div><%= image_tag @question.user.get_profile_image(50, 50), class: "rounded-circle border" %> <%= @question.user.name %></div>
+                <% end %>
+              <div class="sub_text"><%= @question.created_at.strftime('%Y/%m/%d') %></div>
+              </div>
+              <p class="card-text">
+                <p>Content</p>
+                <h6 class="text_long ml-3"><%= @question.content %></h6>
+                <div class="attachments_file">
+                  <%# TODO: 他のファイルにも似たような判定をしているのでそれぞれのモデル内でメソッドとして定義して再利用出来るようにするのがよさそう %>
+                  <% if @question.attachments_file.attached? %>
+                    <%
+                      tmp_file_url = rails_blob_path(@question.attachments_file)
+                      check_ext = File.extname(tmp_file_url).downcase
+
+                      # 音声として許可する拡張子
+                      audio_ext_list = [
+                        '.wav',
+                        '.mp3'
+                      ]
+                    %>
+                    <%# 音声 %>
+                    <% if audio_ext_list.include?(check_ext) %>
+                      <p><%= audio_tag(polymorphic_path(@question.attachments_file), controls: true) %></p>
+                    <% else %>
+                      <%# 画像 %>
+                      <p><%= image_tag(polymorphic_path(@question.attachments_file), controls: true) %></p>
+                    <% end %>
+                  <% end %>
+                </div>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr />
+      <% if @best_answer %>
+        <%= render "admin/answers/best_answer" %>
+      <% end %>
+        <%= render "admin/answers/index" %>
+    </div>
+  </div>
+</div>

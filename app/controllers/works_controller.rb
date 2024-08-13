@@ -12,11 +12,10 @@ class WorksController < ApplicationController
     if @work.save
       @work.save_tags(tag_list)
       flash[:notice] = '投稿しました'
-      
       if @work.group_id.nil?
         redirect_to user_path(current_user.id)
       else
-        redirect_to work_path(@work.group_id)
+        redirect_to group_path(@work.group_id)
       end
     else
       flash.now[:alert] = "投稿に失敗しました"

@@ -2,10 +2,14 @@
 <div class="d-flex justify-content-center">
   <h1 class="page_title">Question Edit</h1>
 </div>
+<%= render partial: 'layouts/error_messages', locals: { object: @question } %>
+<div class="d-flex justify-content-center">
+  <h1 class="page_title">Question Edit</h1>
+</div>
 <div class="container">
   <div class="row justify-content-center">
     <div class="w-75">
-      <%= form_with model: @question do |f| %>
+      <%= form_with model: @question, url: admin_question_path do |f| %>
         <div class="row mt-5">
           <div class="col-lg-3">
             <%= f.label :title %>

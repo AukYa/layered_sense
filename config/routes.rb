@@ -10,6 +10,12 @@ Rails.application.routes.draw do
       resources :comments, only: [:destroy]
     end
     resources :tags, only: [:index, :destroy]
+    resources :groups, only: [:index, :show, :edit, :update, :destroy] do
+      resources :chats, only: [:destroy]
+    end
+    resources :questions, only: [:index, :show, :edit, :update, :destroy] do
+      resources :answers, only: [:destroy]
+    end
   end
   devise_for :users, controllers: {
     sessions: 'users/sessions'

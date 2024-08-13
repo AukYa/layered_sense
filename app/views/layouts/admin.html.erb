@@ -7,6 +7,12 @@
   <script src="https://kit.fontawesome.com/08f6dce76e.js" crossorigin="anonymous"></script>
   <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <!--Bootstrapに必要なJavaScriptの読み込み-->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"
+  ></script>
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -29,6 +35,8 @@
                   <%= link_to "Works", admin_works_path, class: 'nav-link text-dark' %>
                   <%= link_to "Users", admin_users_path, class: 'nav-link text-dark' %>
                   <%= link_to "Tags", admin_tags_path, class: 'nav-link text-dark' %>
+                  <%= link_to "Group", admin_groups_path, class: 'nav-link text-dark' %>
+                  <%= link_to "Q&A", admin_questions_path, class: 'nav-link text-dark' %>
                 </div>
               </div>
             </li>

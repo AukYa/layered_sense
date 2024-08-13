@@ -1,0 +1,38 @@
+<div class="container">
+  <% @chats.each do |chat| %> <br />
+   <div class="row">
+    <div class="col-11">
+     <% if chat.user.guest_user? %>
+      <%= image_tag chat.user.get_profile_image(50, 50), class: "rounded-circle border" %><%= chat.user.name %>
+     <% else %>
+      <%= link_to user_path(chat.user.id), class: "text-dark" do %>
+       <%= image_tag chat.user.get_profile_image(50, 50), class: "rounded-circle border" %><%= chat.user.name %>
+      <% end %>
+     <% end %>
+    </div>
+    <div class="col-1 mb-3">
+      <div class="dropend">
+        <div class="dropend-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa-solid fa-ellipsis"></i>
+        </div>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <%= link_to "削除", admin_group_chat_path(chat.group, chat), method: :delete, "data-confirm" => "削除しますか？", class: 'text-dark', local: false %>
+        </div>
+      </div>
+    </div>
+   </div>
+     <div class="row">
+      <div class="col-12">
+       <p class="sub_text"><%= chat.created_at.strftime('%Y/%m/%d') %></p>
+      </div>
+     </div>
+     <div class="row">
+      <div class="col-12 mb-2">
+       <div class="text_long"><%= chat.chat %></div>
+      </div>
+     </div>
+   <% end %>
+ </div>
+</div>
+
+

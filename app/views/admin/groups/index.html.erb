@@ -1,0 +1,31 @@
+<div class="d-flex justify-content-center">
+  <h1 class="page_title">All Groups</h1>
+</div>
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <table class='table w-75 '>
+      <thead>
+        <tr>
+          <th>Group Image</th>
+          <th>Title</th>
+          <th>Introduction</th>
+          <th>Members</th>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @groups.each do |group, membership| %>
+          <tr>
+            <td><%= image_tag group.get_image(90, 90), class: "border" %></td>
+            <td><%= group.title %></td>
+            <td class="introduction_hidden text_long pb-0"><%= group.introduction %></td>
+            <td><%= group.memberships.count %></td>
+            <td><%= link_to 'Show', admin_group_path(group), class: "btn btn-primary" %></td>
+            <td><%= link_to 'Edit', edit_admin_group_path(group), class: "btn btn-primary" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <%= paginate @groups %>
+</div>
