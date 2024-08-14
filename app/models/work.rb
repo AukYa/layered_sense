@@ -30,7 +30,7 @@ class Work < ApplicationRecord
     elsif search == "partial_match"
       @work = Work.where("title LIKE?", "%#{word}%")
     else
-      @work = Work.all
+      @works = Work.all
     end
   end
 

@@ -42,6 +42,13 @@
                           Unable New Post
                         </div>
                       </div>
+                      <ul class="navbar-nav ml-auto align-self-center">
+                        <li>
+                          <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-light' do %>
+                            <i class="fa-solid fa-right-from-bracket"></i>Log out
+                          <% end %>
+                        </li>
+                      </ul>
                     <% else %>
                       <div class="dropdown nav-link">
                         <div class="dropdown-toggle header_dropdown-toggle rounded-element" type="button" id="dropdownNewButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

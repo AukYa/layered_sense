@@ -16,7 +16,6 @@ class Group < ApplicationRecord
     else
       'no_image.jpg'
     end
-
   end
 
   def is_owned_by?(user)
@@ -37,7 +36,7 @@ class Group < ApplicationRecord
       elsif search == "partial_match"
         @group = Group.where("title LIKE?", "%#{word}%")
       else
-        @group = Group.all
+        @groups = Group.all
       end
     end
 end

@@ -14,7 +14,7 @@ class Tag < ApplicationRecord
       elsif search == "partial_match"
         @tag = Tag.where("tag_name LIKE?", "%#{word}%")
       else
-        @tag = Tag.all
+        @tags = Tag.all
       end
     end
 end

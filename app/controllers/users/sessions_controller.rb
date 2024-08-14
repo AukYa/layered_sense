@@ -15,6 +15,7 @@ class Users::SessionsController < Devise::SessionsController
     return unless user.valid_password?(params[:user][:password])
     return if user.is_deleted == false
     if user.is_deleted == true
+      flash[:alert] = "新規登録を行ってください"
       redirect_to new_user_registration_path
     end
   end

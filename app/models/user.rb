@@ -34,6 +34,8 @@ class User < ApplicationRecord
     def user_status
       if is_deleted == true
         "退会済みユーザー"
+      else
+        "有効"
       end
     end
 
@@ -55,7 +57,7 @@ class User < ApplicationRecord
       elsif search == "partial_match"
         @user = User.where("name LIKE?", "%#{word}%")
       else
-        @user = User.all
+        @users = User.all
       end
     end
 end

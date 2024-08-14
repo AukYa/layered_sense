@@ -21,6 +21,8 @@
         <% elsif group.includesUser?(current_user) %>
           <td><%= link_to 'Show', group_path(group), class: "btn btn-primary" %></td>
           <td><%= link_to 'Leave this group', group_memberships_path(group), method: :delete, class: "btn btn-sm btn-danger" %></td>
+        <% elsif current_user.guest_user? %>
+          <td><%= link_to 'Show', group_path(group), class: "btn btn-primary" %></td>
         <% else %>
           <td><%= link_to 'Show', group_path(group), class: "btn btn-primary" %></td>
           <td><%= link_to 'Join this group', group_memberships_path(group), method: :post, class: "btn btn-sm btn-success" %></td>

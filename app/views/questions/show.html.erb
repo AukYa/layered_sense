@@ -6,7 +6,9 @@
     <div class="w-75">
       <%= render "info", question: @question %>
       <hr />
-      <%= render "answers/new" %>
+      <% unless @question.user == current_user %>
+        <%= render "answers/new" %>
+      <% end %>
       <hr />
       <% if @best_answer %>
         <%= render "answers/best_answer" %>

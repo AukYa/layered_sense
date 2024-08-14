@@ -9,6 +9,7 @@
         <%= link_to 'Delete',group_path(group), method: :delete, "data-confirm" => "削除しますか？", class: "btn btn-danger"%> 
       <% elsif group.includesUser?(current_user) %>
         <%= link_to 'Leave this group', group_memberships_path(group), method: :delete, class: "btn btn-sm btn-danger" %>
+      <% elsif current_user.guest_user? %>
       <% else %>
         <%= link_to 'Join this group', group_memberships_path(group), method: :post, class: "btn btn-sm btn-success" %>
       <% end %>

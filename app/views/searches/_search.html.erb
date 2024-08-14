@@ -2,7 +2,7 @@
   <div class="search_form" >
     <%= form_with url: search_path, local: true, method: :get do |f| %>
       <%= f.text_field :word %>
-      <%= f.select :range, options_for_select([['User'], ['Work'], ['Group'], ['Tag']]) %>
+      <%= f.select :range, options_for_select([['User'], ['Work'], ['Group'], ['Question'], ['Tag']]) %>
       <%= f.select :search, options_for_select([["Perfect Match", "perfect_match"], ["Forward Match", "foward_macth"], ["Backward Match", "backward_match"], ["Partial Match", "partial_match"]]) %>
       <%= f.submit "Search", class: "btn btn-primary" %>
     <% end %>

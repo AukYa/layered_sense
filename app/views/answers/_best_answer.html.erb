@@ -9,16 +9,18 @@
                 <div><%= image_tag @best_answer.user.get_profile_image(50, 50), class: "rounded-circle border" %> <%= @best_answer.user.name %></div>
               <% end %>
             </div>
-            <div class="col-1 offset-3">
-              <div class="dropend">
-                <div class="dropend-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="fa-solid fa-ellipsis"></i>
-                </div>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <%= link_to "削除", question_answer_path(@best_answer.question, @best_answer), method: :delete, "data-confirm" => "削除しますか？", class: 'text-dark' %>
+            <% if @best_answer.user == current_user %>
+              <div class="col-1 offset-3">
+                <div class="dropend">
+                  <div class="dropend-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa-solid fa-ellipsis"></i>
+                  </div>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <%= link_to "削除", question_answer_path(@best_answer.question, @best_answer), method: :delete, "data-confirm" => "削除しますか？", class: 'text-dark' %>
+                  </div>
                 </div>
               </div>
-            </div>
+            <% end %>
           </div>
           <div class="sub_text"><%= @best_answer.created_at.strftime('%Y/%m/%d') %></div>
         </h6>

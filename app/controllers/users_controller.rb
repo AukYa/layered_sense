@@ -32,6 +32,7 @@ class UsersController < ApplicationController
   end
   
   def withdraw
+    ensure_guest_user
     user = User.find(params[:user_id])
     user.update(is_deleted: true)
     reset_session

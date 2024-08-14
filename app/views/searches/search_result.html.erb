@@ -12,6 +12,9 @@
     <% elsif @range == "Group" %>
       <%= render 'groups/index', group: @group %>
       <%= paginate @groups_page %>
+    <% elsif @range == "Question" %>
+      <%= render 'questions/index', question: @question %>
+      <%= paginate @questions_page %>
     <% else %>
       <% @tags.each do |tag| %>
         <div class="col-auto">
