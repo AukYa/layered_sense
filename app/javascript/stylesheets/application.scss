@@ -53,14 +53,17 @@ body {
   border: solid 1px #930403;
 }
 
-.introduction_hidden {
+.content__title {
+  width: 25%;
+}
+.introduction__hidden {
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 4;
 }
 
-.text_long {
+.text__long {
   white-space: pre-wrap;
 }
 

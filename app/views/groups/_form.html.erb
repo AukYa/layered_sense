@@ -12,7 +12,7 @@
       <%= f.label :title %>
     </div>
     <div class="col-lg-8 offset-1 pl-0 pr-0">
-      <%= f.text_field :title, placeholder: "タイトル", class: "w-100" %>
+      <%= f.text_field :title, placeholder: "タイトル（1~64字）", class: "w-100" %>
     </div>
   </div>
   <div class="row mt-5">
@@ -20,7 +20,7 @@
       <%= f.label :introduction %>
     </div>
     <div class="col-lg-8 offset-1 pl-0 pr-0">
-      <%= f.text_area :introduction, placeholder: "説明文", class: "w-100" %>
+      <%= f.text_area :introduction, placeholder: "説明文（0~1000字）", rows:'4', class: "w-100" %>
     </div>
   </div>
   <div class="row">

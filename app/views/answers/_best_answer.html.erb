@@ -23,6 +23,28 @@
           <div class="sub_text"><%= @best_answer.created_at.strftime('%Y/%m/%d') %></div>
         </h6>
         <p class="card-text　text_long"><%= @best_answer.content %></p>
+        <div class="attachments_file">
+          <% if @best_answer.attachments_file.attached? %>
+            <%
+              tmp_file_url = rails_blob_path(@best_answer.attachments_file)
+              check_ext = File.extname(tmp_file_url).downcase
+              
+              # 音声として許可する拡張子
+              audio_ext_list = [
+                '.wav',
+                '.mp3'
+              ]
+            %>
+            
+            <%# 音声 %>
+            <% if audio_ext_list.include?(check_ext) %>
+              <p><%= audio_tag(polymorphic_path(@best_answer.attachments_file), controls: true) %></p>
+            <% else %>
+              <%# 画像 %>
+              <p><%= image_tag(polymorphic_path(@best_answer.attachments_file), controls: true) %></p>
+            <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

@@ -4,20 +4,21 @@
       <th>Title</th>
       <th>Content</th>
       <th>Answers</th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
   <tbody>
     <% @questions.each do |question| %>
       <tr>
-        <td><%= question.title %></td>
-        <td class="introduction_hidden text_long pb-0"><%= question.content %></td>
+        <td class="content__title"><%= question.title %></td>
+        <td class="introduction__hidden text__long pb-0"><%= question.content %></td>
         <td><%= question.answers.count %></td>
         <% if question.user == current_user %>
           <td><%= link_to 'Show', question_path(question), class: "btn btn-primary" %></td>
           <td><%= link_to 'Edit', edit_question_path(question), class: "btn btn-primary" %></td>
         <% else %>
           <td><%= link_to 'Show', question_path(question), class: "btn btn-primary" %></td>
+          <td colspan="1"></td>
         <% end %>
       </tr>
     <% end %>
