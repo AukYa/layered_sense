@@ -10,7 +10,10 @@
               <% end %>
             </div>
             <% if @best_answer.user == current_user %>
-              <div class="col-1 offset-3">
+              <div class="col-2 text-right">
+                <i class="fa-solid fa-crown" style="color: #ff0982;"></i>
+              </div>
+              <div class="col-2 text-right">
                 <div class="dropend">
                   <div class="dropend-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa-solid fa-ellipsis"></i>

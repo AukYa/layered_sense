@@ -1,12 +1,12 @@
 <div class="container mt-5">
   <div class="row">
-    <div class="col-3 p-0">
+    <div class="col-lg-3 p-0">
       <%= image_tag group.get_image(90, 90), class: "border" %>
     </div>
-    <div class="col-3 offset-6 align-content-center text-right p-0">
+    <div class="col-lg-3 offset-lg-6 align-content-center text-right p-0">
       <% if group.is_owned_by?(current_user) %>
         <%= link_to 'Edit', edit_group_path(group), class: "btn btn-primary group_#{group.id}" %>
-        <%= link_to 'Delete',group_path(group), method: :delete, "data-confirm" => "削除しますか？", class: "btn btn-danger"%> 
+        <%= link_to 'Delete',group_path(group), method: :delete, "data-confirm" => "削除しますか？", class: "btn btn-danger"%>
       <% elsif group.includesUser?(current_user) %>
         <%= link_to 'Leave this group', group_memberships_path(group), method: :delete, class: "btn btn-sm btn-danger" %>
       <% elsif current_user.guest_user? %>
@@ -21,7 +21,7 @@
     <div class="col-6 chats/counter">
       <%= render 'chats/counter', group: @group %>
     </div>
-    <div class="col-6 text-right">
+    <div class="col-lg-6 text-right">
       <span class="h5 mr-2">group owner: </span>
       <%= link_to user_path(@group.owner_id), class: "text-dark" do %>
         <%= image_tag @group.owner.get_profile_image(50, 50), class: "rounded-circle border" %> <%= @group.owner.name %>

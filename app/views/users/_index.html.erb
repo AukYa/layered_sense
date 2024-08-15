@@ -1,10 +1,10 @@
 <% @users.each do |user| %>
-  <div class="col-lg-2 pl-5 text-center" >
-    <% unless user.guest_user? %>
+  <% unless user.guest_user? %>
+    <div class="col-lg-2 text-center pl-5" >
       <%= link_to user_path(user.id), class: "text-dark" do %>
         <%= image_tag user.get_profile_image(90, 90), class: "rounded-circle border"; %>
         <h6><%= user.name %></h6>
       <% end %>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 <% end %>

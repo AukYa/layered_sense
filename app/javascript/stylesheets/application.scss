@@ -1,7 +1,12 @@
 @use '~bootstrap/scss/bootstrap';
+@import url('https://fonts.googleapis.com/css2?family=Vesper+Libre:wght@400;500;700;900&display=swap');
 
 body {
   background-image: url("../images/hoge.jpg");
+}
+
+header, .page_title, h2, .about__text {
+  font-family: 'Vesper Libre'
 }
 
 .rounded-element {
@@ -92,3 +97,4 @@ body {
   height: 100%;
   object-fit: cover;
 }
+

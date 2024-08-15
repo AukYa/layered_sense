@@ -1,7 +1,7 @@
 <div class="container">
   <% @chats.each do |chat| %> <br />
    <div class="row">
-    <div class="col-11">
+    <div class="col-lg-11">
      <% if chat.user.guest_user? %>
       <%= image_tag chat.user.get_profile_image(50, 50), class: "rounded-circle border" %><%= chat.user.name %>
      <% else %>
@@ -10,8 +10,8 @@
       <% end %>
      <% end %>
     </div>
-    <div class="col-1 mb-3">
-     <% if chat.user == current_user %>
+    <% if chat.user == current_user %>
+     <div class="col-lg-1 mb-3">
       <div class="dropend">
         <div class="dropend-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fa-solid fa-ellipsis"></i>
@@ -20,16 +20,16 @@
           <%= link_to "削除", group_chat_path(chat.group, chat), method: :delete, "data-confirm" => "削除しますか？", class: 'text-dark', local: false %>
         </div>
       </div>
-     <% end %>
-    </div>
+     </div>
+    <% end %>
    </div>
      <div class="row">
-      <div class="col-12">
+      <div class="col-lg-12">
        <p class="sub_text"><%= chat.created_at.strftime('%Y/%m/%d') %></p>
       </div>
      </div>
      <div class="row">
-      <div class="col-12 mb-2">
+      <div class="col-lg-12 mb-2">
        <div class="text__long"><%= chat.chat %></div>
       </div>
      </div>

@@ -1,19 +1,24 @@
 <div class="row">
-  <div class="col-12 mt-3">
+  <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
         <div class="card-title">
           <div class="row">
-            <div class="col-8">
-              <p>Title</p>
-              <h3 class="ml-3"><%= question.title %></h3>
-            </div>
-            <div class="col-4 text-right">
-              <% if @question.user == current_user %>
+            <% if @question.user == current_user %>
+              <div class="col-lg-8">
+                <p>Title</p>
+                <h3 class="ml-3"><%= question.title %></h3>
+              </div>
+              <div class="col-lg-4 text-right">
                 <%= link_to 'Edit', edit_question_path(question), class: "btn btn-primary" %>
                 <%= link_to 'Delete', question_path(question), method: :delete, "data-confirm" => "削除しますか？", class: "btn btn-danger"%> 
-              <% end %>
-            </div>
+              </div>
+            <% else %>
+              <div class="col-lg-12">
+                <p>Title</p>
+                <h3 class="ml-3"><%= question.title %></h3>
+              </div>
+            <% end %>
           </div>
           <p class="pr-3 pl-3"><hr /></p>
           <%= link_to user_path(question.user.id), class: "text-dark" do  %>
@@ -25,31 +30,8 @@
           <p>Content</p>
           <h6 class="text__long ml-3"><%= question.content %></h6>
           <div class="attachments_file">
-            
-            
-            
-            
-            <%# TODO: 他のファイルにも似たような判定をしているのでそれぞれのモデル内でメソッドとして定義して再利用出来るようにするのがよさそう %>
-            <% if question.attachments_file.attached? %>
-              <%
-                tmp_file_url = rails_blob_path(question.attachments_file)
-                check_ext = File.extname(tmp_file_url).downcase
-                
-                # 音声として許可する拡張子
-                audio_ext_list = [
-                  '.wav',
-                  '.mp3'
-                ]
-              %>
-              
-              <%# 音声 %>
-              <% if audio_ext_list.include?(check_ext) %>
-                <p><%= audio_tag(polymorphic_path(question.attachments_file), controls: true) %></p>
-              <% else %>
-                <%# 画像 %>
-                <p><%= image_tag(polymorphic_path(question.attachments_file), controls: true) %></p>
-              <% end %>
-            <% end %>
+            <!--selfにすることによってこのview自体（全体）を渡している-->
+            <%= question.attachments_type?(self) %>
           </div>
         </p>
       </div>
