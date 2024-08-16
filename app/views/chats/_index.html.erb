@@ -3,10 +3,10 @@
    <div class="row">
     <div class="col-lg-11">
      <% if chat.user.guest_user? %>
-      <%= image_tag chat.user.get_profile_image(50, 50), class: "rounded-circle border" %><%= chat.user.name %>
+      <%= image_tag chat.user.get_profile_image(50, 50), class: "rounded-circle border" %> <%= chat.user.name %>
      <% else %>
       <%= link_to user_path(chat.user.id), class: "text-dark" do %>
-       <%= image_tag chat.user.get_profile_image(50, 50), class: "rounded-circle border" %><%= chat.user.name %>
+       <%= image_tag chat.user.get_profile_image(50, 50), class: "rounded-circle border" %> <%= chat.user.name %>
       <% end %>
      <% end %>
     </div>
