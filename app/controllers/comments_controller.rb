@@ -4,9 +4,12 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     @comment.work_id = @work.id
     @comment.user_id = current_user.id
-    @comment.save
-    flash[:alert] = @comment.errors.full_messages.reject(&:blank?).join("")
-    redirect_to request.referer
+    if @comment.save
+      redirect_to request.referer
+    else
+      flash[:alert] = "コメント内容を入力してください"
+      redirect_to request.referer
+    end
   end
 
   def destroy

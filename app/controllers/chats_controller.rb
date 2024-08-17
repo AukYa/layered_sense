@@ -7,11 +7,11 @@ class ChatsController < ApplicationController
     if @chat.save
       redirect_to request.referer
     else
-      flash[:alert] = "失敗しました"
+      flash[:alert] = "チャット内容を入力してください"
       redirect_to request.referer
     end
   end
-  
+
   def destroy
     @group = Group.find(params[:group_id])
     @group_chats = @group.chats
@@ -19,9 +19,9 @@ class ChatsController < ApplicationController
     flash[:notice] = "削除しました"
     redirect_to request.referer
   end
-  
+
   private
-  
+
   def chat_params
     params.require(:chat).permit(:chat)
   end

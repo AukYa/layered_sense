@@ -23,7 +23,10 @@
 
 ​
 ## 設計書
-後ほど作成予定
+・UI-Flows(https://app.diagrams.net/#G1wKkF7BKpuC4oPOBZ4Dc3ySOM0FH-i9V4#%7B%22pageId%22%3A%22_CFq1R_h1w27PZcz534x%22%7D)  
+・ER図(https://app.diagrams.net/?libs=general;er#G1oaJkDF2-CciyXHjTLGUC_MH51xEorpyA#%7B%22pageId%22%3A%22R2lEEEUBdFMjLlhIrx00%22%7D)  
+・テーブル定義書(https://docs.google.com/spreadsheets/d/1mFkR96pVAW4dc46xOm2IVlMhNcUpg8TM8Qg0rh1360M/edit?gid=1105809704#gid=1105809704)  
+・アプリケーション詳細設計(https://docs.google.com/spreadsheets/d/1K8P3bZxJ0sVDb921Lr0QEPwJdjm8JtZx/edit?gid=549108681#gid=549108681)  
 
 ​
 ## 開発環境
@@ -34,14 +37,8 @@
 - IDE：Cloud9
 ​
 ## 使用素材
-未定
-<!-- - 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。 -->
-<!-- - アプリケーションの実装に使用したgem/bootstrapのリファレンスなどの記載は不要です。 -->
-<!-- - 使用しない場合は、使用素材の項目をREADMEから削除してください。 -->
-<!-- - 架空の団体・題材を前提にポートフォリオを制作する場合、下記のテンプレートを当項目内に記載しましょう。 -->
-<!-- 【テンプレート】 -->
-<!-- 著作権を考慮し、架空のデータを扱う予定です。 -->
-<!-- なお今後、実在するデータを利用する際には、事前に著作権保持者と契約を結んだ上で利用します。 -->
+- フリーイラストとして以下を使用
+    - Unsplash(https://unsplash.com/ja)
 
 ## 実装機能リストのURL
 https://docs.google.com/spreadsheets/d/1ljYT3W6ZStGwJ3-iL8TwdcKv6PDmiZ8u0yvSqZJwJgw/edit?gid=885378170#gid=885378170

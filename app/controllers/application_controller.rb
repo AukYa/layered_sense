@@ -22,8 +22,6 @@ class ApplicationController < ActionController::Base
       redirect_to homes_top_path
     end
   end
-  
-  
 
   protected
 
