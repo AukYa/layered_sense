@@ -37,6 +37,7 @@ Rails.application.routes.draw do
     resources :chats, only: [:create, :destroy]
   end
   resources :questions do
+    get 'my_questions' => 'questions#my_questions'
     resources :answers, only: [:create, :destroy] do
       patch 'best'
     end

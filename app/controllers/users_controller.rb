@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     end
     @works = @user.works
     @works_page = Work.page(params[:page]).per(16).order(created_at: :desc)
+    @my_questions = @user.questions.where(user_id: current_user.id)
   end
 
   def edit
@@ -30,7 +31,7 @@ class UsersController < ApplicationController
       render :edit
     end
   end
-  
+
   def withdraw
     ensure_guest_user
     user = User.find(params[:user_id])
@@ -49,7 +50,7 @@ class UsersController < ApplicationController
       redirect_to homes_top_path
     end
   end
-  
+
   def is_matching_login_user
     user = User.find(params[:id])
     unless user.id == current_user.id

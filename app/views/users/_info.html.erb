@@ -15,6 +15,7 @@
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <%= link_to "プロフィールの編集", edit_user_path(@user), class: "text-dark nav-link" %>
         <%= link_to "ブックマークした作品", work_favorites_path(@works), class: "text-dark nav-link" %>
+        <%= link_to "投稿したクエスチョン", question_my_questions_path(@my_questions), class: "text-dark nav-link" %>
         <%= link_to "退会", user_withdraw_path(@user), method: :patch, "data-confirm" => "退会しますか？", class: "text-dark nav-link" %>
       </div>
     </div>

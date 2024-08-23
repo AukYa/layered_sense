@@ -1,9 +1,9 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
-  
+
   def index
     @questions = Question.page(params[:page]).per(20).order(created_at: :desc)
-    
+
   end
 
   def show
@@ -16,7 +16,7 @@ class QuestionsController < ApplicationController
   def edit
     is_matching_login_user
   end
-  
+
   def update
     is_matching_login_user
     if @question.update(question_params)
@@ -31,7 +31,7 @@ class QuestionsController < ApplicationController
   def new
     @question = Question.new
   end
-  
+
   def create
     @question = Question.new(question_params)
     @question.user = current_user
@@ -43,26 +43,30 @@ class QuestionsController < ApplicationController
       render :new
     end
   end
-  
+
   def destroy
     @question.destroy
     flash[:notice] = "質問を削除しました"
     redirect_to questions_path
   end
-  
+
+  def my_questions
+    @my_questions = Question.where(user_id: current_user.id)
+  end
+
   private
-  
+
   def is_matching_login_user
     unless @question.user_id == current_user.id
       flash[:alert] = "利用できません"
       redirect_to homes_top_path
     end
   end
-  
+
   def set_question
     @question = Question.find(params[:id])
   end
-  
+
   def question_params
     params.require(:question).permit(:title, :content, :attachments_file)
   end

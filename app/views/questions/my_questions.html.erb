@@ -1,0 +1,28 @@
+<div class="d-flex justify-content-center">
+  <h1 class="page_title">My Questions</h1>
+</div>
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <table class='table w-75 '>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Content</th>
+          <th>Answers</th>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @my_questions.each do |question| %>
+          <tr>
+            <td class="content__title"><%= question.title %></td>
+            <td class="introduction__hidden text__long pb-0"><%= question.content %></td>
+            <td><%= question.answers.count %></td>
+            <td><%= link_to 'Show', question_path(question), class: "btn btn-primary" %></td>
+            <td><%= link_to 'Edit', edit_question_path(question), class: "btn btn-primary" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
