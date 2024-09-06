@@ -7,7 +7,7 @@ require 'rails_helper'
   
   it 'nameが空だと登録できない' do
     @user.name = ' '
-    @user.vaild?
-    expect(@user.errors.full_messages).to include "name can't be blank"
+    @user.valid?
+    expect(@user.errors.full_messages).to include "名前を入力してください"
   end
 end
