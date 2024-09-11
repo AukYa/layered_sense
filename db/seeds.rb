@@ -7,6 +7,33 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
+testuser = User.find_or_create_by!(email: "test@aaa.jp") do |user|
+  user.name = "testuser"
+  user.password = "123456"
+  user.password_confirmation = "123456"
+end
+
+Group.find_or_create_by!(title: "Rock music group") do |group|
+  group.group_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/spec/fixtures/group_image/Rock_music_group_img.jpg"), filename: "Rock_music_group_img")
+  group.introduction = ""
+  group.owner_id = 1
+end
+membership_group1 = Membership.find_or_create_by!(group_id: 1, user_id: 1)
+
+Group.find_or_create_by!(title: "Instrumental group") do |group|
+  group.group_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/spec/fixtures/group_image/Instrumental_group_img.jpg"), filename: "Instrumental_group_img.jpg")
+  group.introduction = ""
+  group.owner_id = 1
+end
+membership_group2 = Membership.find_or_create_by!(group_id: 2, user_id: 1)
+
+# Work.find_or_create_by!(title: "short inst") do |work|
+#   work.music_file = ActiveStorage::Blob.create_and_upload!(io: File.open)
+#   work.introduction = ""
+#   work.tag = ""
+#   work.group_id = ""
+# end
+
 # 5.times do
 #   password = Faker::Internet.password(min_length: 6)
 #   user = User.create!(
@@ -15,13 +42,11 @@ require 'faker'
 #     password: password,
 #     password_confirmation: password
 #     )
+#   31.times do
+#     user.works.create!(
+#       title: Faker::Lorem.characters(number: 10),
+#       introduction: Faker::Lorem.characters(number: 30),
+#       music_file: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join('spec/fixtures/music_file/guitar_solo.wav')), filename: "guitar_solo.wav")
+#       )
+#   end
 # end
-
-31.times do
-  work = Work.create!(
-    title: Faker::Lorem.characters(number: 10),
-    introduction: Faker::Lorem.characters(number: 30),
-    music_file: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join('db/spec/fixtures/music_file/guitar_solo.wav')), filename: "guitar_solo.wav")
-    )
-end
-# 記述の仕方を変えてもmusic_fileが参照できない（No such file or directory）
