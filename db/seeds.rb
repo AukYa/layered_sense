@@ -8,9 +8,15 @@
 require 'faker'
 require 'factory_bot_rails'
 
+# 管理者ユーザーの登録
+Admin.find_or_create_by!(email: ENV['ADMIN_EMAIL']) do |admin|
+  admin.password = ENV['ADMIN_PASSWORD']
+  admin.password_confirmation = ENV['ADMIN_PASSWORD']
+end
+
 # 投稿用エンドユーザーの登録
-testuser = User.find_or_create_by!(email: "test@aaa.jp") do |user|
-  user.name = "testuser"
+sampleuser = User.find_or_create_by!(email: "sample@aaa.jp") do |user|
+  user.name = "sampleuser"
   user.password = "123456"
   user.password_confirmation = "123456"
 end
@@ -24,6 +30,13 @@ Faker::Config.locale = :en
     password: "123456",
     password_confirmation: "123456"
   )
+end
+
+# 閲覧用エンドユーザーの登録
+testuser = User.find_or_create_by!(email: "test@aaa.jp") do |user|
+  user.name = "testuser"
+  user.password = "123456"
+  user.password_confirmation = "123456"
 end
 
 # タグの登録
@@ -79,7 +92,7 @@ tag_relationship2 = TagRelationship.find_or_create_by!(tag_id: 3, work_id: 3)
 
 Work.find_or_create_by!(title: "game music") do |work|
   work.music_file = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/spec/fixtures/music_file/game_music.wav"), filename: "game_music.wav")
-  work.introduction = "My favourite game."
+  work.introduction = "My favorite game."
   work.group_id = 2
   work.user_id = 1
 end
@@ -107,7 +120,7 @@ tag_relationship3 = TagRelationship.find_or_create_by!(tag_id: 8, work_id: 6)
 # 各ワークのコメントの投稿
 comments = ["Nice work!!", "That's interesting.", "I learned a lot.", "Awesome! Thank you!!", "I respect you."]
 
-(1..5).each do |work_id|
+(1..6).each do |work_id|
   3.times do
     Comment.create!(
       user_id: rand(2..6),

@@ -5,11 +5,14 @@
         <h6 class="card-title">
           <div class="row">
             <div class="col-8">
-              <%= link_to user_path(@best_answer.user.id), class: "text-dark" do  %>
+              <%= link_to admin_user_path(@best_answer.user.id), class: "text-dark" do  %>
                 <div><%= image_tag @best_answer.user.get_profile_image(50, 50), class: "rounded-circle border" %> <%= @best_answer.user.name %></div>
               <% end %>
             </div>
-            <div class="col-1 offset-3">
+            <div class="col-3 text-right">
+              <i class="fa-solid fa-crown" style="color: #ff0982;"></i>
+            </div>
+            <div class="col-1 text-right">
               <div class="dropend">
                 <div class="dropend-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="fa-solid fa-ellipsis"></i>
@@ -24,18 +27,18 @@
         </h6>
         <p class="card-text　text__long"><%= @best_answer.content %></p>
         <div class="attachments_file">
-            <% if answer.attachments_file.attached? %>
+            <% if @best_answer.attachments_file.attached? %>
               <%
                 tmp_file_url = rails_blob_path(@best_answer.attachments_file)
                 check_ext = File.extname(tmp_file_url).downcase
-                
+
                 # 音声として許可する拡張子
                 audio_ext_list = [
                   '.wav',
                   '.mp3'
                 ]
               %>
-              
+
               <%# 音声 %>
               <% if audio_ext_list.include?(check_ext) %>
                 <p><%= audio_tag(polymorphic_path(@best_answer.attachments_file), controls: true) %></p>

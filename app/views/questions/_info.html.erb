@@ -28,7 +28,7 @@
         </div>
         <p class="card-text">
           <p>Content</p>
-          <h6 class="text__long ml-3"><%= question.content %></h6>
+          <p class="text__long ml-3"><%= question.content %></p>
           <div class="attachments_file">
             <!--selfにすることによってこのview自体（全体）を渡している-->
             <%= question.attachments_type?(self) %>

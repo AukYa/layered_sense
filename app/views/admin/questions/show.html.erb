@@ -20,7 +20,7 @@
                   </div>
                 </div>
                 <p class="pr-3 pl-3"><hr /></p>
-                <%= link_to user_path(@question.user.id), class: "text-dark" do  %>
+                <%= link_to admin_user_path(@question.user.id), class: "text-dark" do  %>
                   <div><%= image_tag @question.user.get_profile_image(50, 50), class: "rounded-circle border" %> <%= @question.user.name %></div>
                 <% end %>
               <div class="sub_text"><%= @question.created_at.strftime('%Y/%m/%d') %></div>
