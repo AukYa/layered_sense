@@ -6,7 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
-require 'factory_bot_rails'
 
 # 管理者ユーザーの登録
 Admin.find_or_create_by!(email: ENV['ADMIN_EMAIL']) do |admin|
