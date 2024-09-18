@@ -1,6 +1,6 @@
 class WorksController < ApplicationController
   before_action :restrict_guest_user_from_new, only: [:new]
-  
+
   def new
     @work = Work.new
   end
@@ -8,7 +8,7 @@ class WorksController < ApplicationController
   def create
     @work = Work.new(work_params)
     @work.user_id = current_user.id
-    tag_list = params[:work][:tag_name].split(',')
+    tag_list = params[:work][:tag_name].split(',').uniq
     if @work.save
       @work.save_tags(tag_list)
       flash[:notice] = '投稿しました'
@@ -22,7 +22,7 @@ class WorksController < ApplicationController
       render :new
     end
   end
-    
+
   def index
     @works = Work.page(params[:page]).per(30).order(created_at: :desc)
     @users = User.all
@@ -61,7 +61,7 @@ class WorksController < ApplicationController
   end
 
   private
-  
+
   def is_matching_login_user
     @work = Work.find(params[:id])
     unless @work.user_id == current_user.id
