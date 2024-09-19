@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :questions
   has_many :answers
   has_many :favorites, dependent: :destroy
+  has_many :notifications, dependent: :destroy
   
   validates :name, presence: true, length: {maximum: 24}
   validates :introduction, length: {maximum: 1000}
