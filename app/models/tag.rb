@@ -1,9 +1,14 @@
 class Tag < ApplicationRecord
   has_many :tag_relationships, dependent: :destroy
   has_many :works, through: :tag_relationships
-  
+
   validates :tag_name, uniqueness: true, presence: true, length: {maximum: 64}
-  
+
+  def self.revise_tags(tag_list)
+    revised_tags = tag_list.map { |tag| tag.delete(" #") }
+    return revised_tags
+  end
+
   def self.looks(search, word)
       if search == "perfect_match"
         @tag = Tag.where("tag_name LIKE?", "#{word}")

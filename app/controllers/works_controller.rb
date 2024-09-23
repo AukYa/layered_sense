@@ -8,9 +8,10 @@ class WorksController < ApplicationController
   def create
     @work = Work.new(work_params)
     @work.user_id = current_user.id
-    tag_list = params[:work][:tag_name].split(',').uniq
+    tag_list = params[:work][:tag_name].split(',')
+    revised_tags = Tag.revise_tags(tag_list).uniq
     if @work.save
-      @work.save_tags(tag_list)
+      @work.save_tags(revised_tags)
       flash[:notice] = '投稿しました'
       if @work.group_id.nil?
         redirect_to user_path(current_user.id)

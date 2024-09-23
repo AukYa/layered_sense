@@ -42,6 +42,7 @@ Rails.application.routes.draw do
       patch 'best'
     end
   end
+  resources :notifications, only: [:update]
   get 'search' => 'searches#search'
   get 'homes/top'
   get 'homes/about', to: 'homes#about', as: :about
