@@ -35,12 +35,16 @@
             <%= f.label :tag_name %>
           </div>
           <div class="col-lg-8 offset-1 pl-0 pr-0">
-            <%= f.text_field :tag_name, id:'tag_ids', :size=>"50", placeholder: "タグをつける。複数つけるには' , 'で区切ってください。", class: "w-100" %>
+            <%= f.text_field :tag_name, value: @tag_list, id:'tag_ids', :size=>"50", placeholder: "タグをつける。複数つけるには' , 'で区切ってください。", class: "w-100" %>
           </div>
         </div>
         <div class="row">
           <div class="offset-lg-6 col-lg-6 text-right mt-4 pr-0">
-            <%= f.submit 'Post' %>
+            <% if work.new_record? %>
+              <%= f.submit 'Post' %>
+            <% else %>
+              <%= f.submit 'Save Changes' %>
+            <% end %>
           </div>
         </div>
       <% end %>

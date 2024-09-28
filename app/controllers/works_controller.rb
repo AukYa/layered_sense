@@ -38,6 +38,7 @@ class WorksController < ApplicationController
   def edit
     is_matching_login_user
     @work = Work.find(params[:id])
+    @tag_list = @work.tags.pluck(:tag_name).join(',')
   end
 
   def update
