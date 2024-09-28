@@ -5,7 +5,7 @@ class Tag < ApplicationRecord
   validates :tag_name, uniqueness: true, presence: true, length: {maximum: 64}
 
   def self.revise_tags(tag_list)
-    revised_tags = tag_list.map { |tag| tag.delete(" #") }
+    revised_tags = tag_list.map { |tag| tag.delete(" #　") }
     return revised_tags
   end
 

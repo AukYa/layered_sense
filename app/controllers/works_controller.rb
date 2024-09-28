@@ -45,8 +45,9 @@ class WorksController < ApplicationController
     is_matching_login_user
     @work = Work.find(params[:id])
     tag_list = params[:work][:tag_name].split(',')
+    revised_tags = Tag.revise_tags(tag_list).uniq
     if @work.update(work_params)
-      @work.save_tags(tag_list)
+      @work.save_tags(revised_tags)
       flash[:notice] = '投稿を編集しました'
       redirect_to work_path(@work)
     else
